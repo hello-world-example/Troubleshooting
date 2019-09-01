@@ -1,8 +1,8 @@
-# Template-Hugo 
+# Troubleshooting 
 
 
 ```
-sed -i '' 's/Template-Hugo/_NewProject_/g' `grep Template-Hugo --include=\*.{md,html,xml} -rl .`
+sed -i '' 's/Troubleshooting/_NewProject_/g' `grep Troubleshooting --include=\*.{md,html,xml} -rl .`
 
 git config user.email ykb553@163.com
 git config -l | grep user
