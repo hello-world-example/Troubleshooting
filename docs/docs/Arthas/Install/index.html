@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Install | Troubleshooting</title>
+
+
+<link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+
+
+
+
+<link rel="icon" href="/Troubleshooting/favicon.png" type="image/x-icon">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://hello-world-example.github.io/Troubleshooting/">Troubleshooting</a>
+</h2>
+
+
+
+
+
+
+    
+  
+  
+  
+
+  <style>
+  nav ul a[href$="\2fTroubleshooting\2f docs\2f Arthas\2fInstall\2f "] {
+      color: #004ed0;
+  }
+  </style>
+
+<ul>
+<li><strong>Arthas</strong>
+
+<ul>
+<li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
+</ul></li>
+</ul>
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/Troubleshooting/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Install</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="install">Install</h1>
+
+<h2 id="安装">安装</h2>
+
+<p>在 Github 上找到最新的发布包：<a href="https://github.com/alibaba/arthas/releases">https://github.com/alibaba/arthas/releases</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://github.com/alibaba/arthas/releases/download/arthas-all-3.1.1/arthas-3.1.1-bin.zip
+
+$ unzip arthas-3.1.1-bin.zip -d arthas
+$ cd arthas
+
+<span style="color:#75715e"># 帮助</span>
+$ java -jar arthas-boot.jar -h</code></pre></div>
+<h2 id="如何使用">如何使用</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 进入交互页面</span>
+$ java -jar arthas-boot.jar
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> arthas-boot version: <span style="color:#ae81ff">3</span>.1.1
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> Process <span style="color:#ae81ff">62498</span> already using port <span style="color:#ae81ff">3658</span>
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> Process <span style="color:#ae81ff">62498</span> already using port <span style="color:#ae81ff">8563</span>
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> Found existing java process, please choose one and hit RETURN.
+* <span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">]</span>: <span style="color:#ae81ff">62498</span> xxx Java 进程 xxx
+  <span style="color:#f92672">[</span><span style="color:#ae81ff">2</span><span style="color:#f92672">]</span>: <span style="color:#ae81ff">54006</span> xxx Java 进程 xxx
+  <span style="color:#f92672">[</span><span style="color:#ae81ff">3</span><span style="color:#f92672">]</span>: <span style="color:#ae81ff">53993</span> xxx Java 进程 xxx
+  &gt; 选择一个 Java 进程ID，进入交互页面
+  
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> arthas home: /opt/websuite/arthas
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> The target process already listen port <span style="color:#ae81ff">3658</span>, skip attach.
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span> arthas-client connect <span style="color:#ae81ff">127</span>.0.0.1 <span style="color:#ae81ff">3658</span>
+  ,---.  ,------. ,--------.,--.  ,--.  ,---.   ,---.                           
+ /  O  <span style="color:#ae81ff">\ </span>|  .--. <span style="color:#e6db74">&#39;&#39;</span>--.  .--<span style="color:#e6db74">&#39;|  &#39;</span>--<span style="color:#e6db74">&#39;  | /  O  \ &#39;</span>   .-<span style="color:#e6db74">&#39;                          
+</span><span style="color:#e6db74">|  .-.  ||  &#39;</span>--<span style="color:#e6db74">&#39;.&#39;</span>   |  |   |  .--.  <span style="color:#f92672">||</span>  .-.  |<span style="color:#e6db74">`</span>.  <span style="color:#e6db74">`</span>-.                          
+|  | |  <span style="color:#f92672">||</span>  |<span style="color:#ae81ff">\ </span> <span style="color:#ae81ff">\ </span>   |  |   |  |  |  <span style="color:#f92672">||</span>  | |  |.-<span style="color:#e6db74">&#39;    |                         
+</span><span style="color:#e6db74">`--&#39;</span> <span style="color:#e6db74">`</span>--<span style="color:#e6db74">&#39;`--&#39;</span> <span style="color:#e6db74">&#39;--&#39;</span>   <span style="color:#e6db74">`</span>--<span style="color:#e6db74">&#39;   `--&#39;</span>  <span style="color:#e6db74">`</span>--<span style="color:#e6db74">&#39;`--&#39;</span> <span style="color:#e6db74">`</span>--<span style="color:#e6db74">&#39;`-----&#39;</span>                          
+                                                                                
+
+wiki      https://alibaba.github.io/arthas                                      
+tutorials https://alibaba.github.io/arthas/arthas-tutorials                     
+version   <span style="color:#ae81ff">3</span>.1.1                                                                 
+pid       <span style="color:#ae81ff">62498</span>                                                                 
+time      <span style="color:#ae81ff">2019</span>-09-01 <span style="color:#ae81ff">18</span>:40:40                                                   
+
+<span style="color:#75715e"># 在 arthas 交互页面 查看帮助</span>
+arthas&gt; $ help
+ NAME         DESCRIPTION                                                                                                                                                                  
+ help         Display Arthas Help                                                                                                                                                          
+ keymap       Display all the available keymap <span style="color:#66d9ef">for</span> the specified connection.                                                                                                               
+ sc           Search all the classes loaded by JVM                                                                                                                                         
+ sm           Search the method of classes loaded by JVM                                                                                                                                   
+ classloader  Show classloader info                                                                                                                                                        
+ jad          Decompile class                                                                                                                                                              
+ getstatic    Show the static field of a class                                                                                                                                             
+ monitor      Monitor method execution statistics, e.g. total/success/failure count, average rt, fail rate, etc.                                                                           
+ stack        Display the stack trace <span style="color:#66d9ef">for</span> the specified class and method                                                                                                                   
+ thread       Display thread info, thread stack                                                                                                                                            
+ trace        Trace the execution time of specified method invocation.                                                                                                                     
+ watch        Display the input/output parameter, <span style="color:#66d9ef">return</span> object, and thrown exception of specified method invocation                                                                       
+ tt           Time Tunnel                                                                                                                                                                  
+ jvm          Display the target JVM information                                                                                                                                           
+ ognl         Execute ognl expression.                                                                                                                                                     
+ mc           Memory compiler, compiles java files into bytecode and class files in memory.                                                                                                
+ redefine     Redefine classes. @see Instrumentation#redefineClasses<span style="color:#f92672">(</span>ClassDefinition...<span style="color:#f92672">)</span>                                                                                                   
+ dashboard    Overview of target jvm<span style="color:#960050;background-color:#1e0010">&#39;</span>s thread, memory, gc, vm, tomcat info.                                                                                                                
+ dump         Dump class byte array from JVM                                                                                                                                               
+ options      View and change various Arthas options                                                                                                                                       
+ cls          Clear the screen                                                                                                                                                             
+ reset        Reset all the enhanced classes                                                                                                                                               
+ version      Display Arthas version                                                                                                                                                       
+ shutdown     Shutdown Arthas server and exit the console                                                                                                                                  
+ session      Display current session information                                                                                                                                          
+ sysprop      Display, and change the system properties.                                                                                                                                   
+ sysenv       Display the system env.                                                                                                                                                      
+ history      Display command history                                                                                                                                                      
+ cat          Concatenate and print files                                                                                                                                                  
+ pwd          Return working directory name                                                                                                                                                
+ mbean        Display the mbean information                                   </code></pre></div>
+<blockquote>
+<p>如果attach不上目标进程，可以查看<code>~/logs/arthas/</code> 目录下的日志</p>
+</blockquote>
+
+<h2 id="web-console">Web Console</h2>
+
+<blockquote>
+<p>arthas-boot.jar 启动后访问： <a href="http://127.0.0.1:8563/">http://127.0.0.1:8563/</a></p>
+</blockquote>
+
+<h2 id="卸载">卸载</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 安装安装目录</span>
+rm -rf arthas
+
+rm -rf ~/.arthas/
+rm -rf ~/logs/arthas</code></pre></div>
+<h2 id="read-more">Read More</h2>
+
+<blockquote>
+<p>官方文档：<a href="https://alibaba.github.io/arthas/install-detail.html">https://alibaba.github.io/arthas/install-detail.html</a></p>
+</blockquote>
+</article>
+
+      
+<div class="book-footer justify-end">
+  
+  
+  <div>
+    <a href="https://github.com/hello-world-example/Troubleshooting/edit/master/HuGo/content/docs/Arthas/Install.md" target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/edit.svg" alt="Edit" /> Edit this page
+    </a>
+  </div>
+  
+</div>
+
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#install">Install</a>
+<ul>
+<li><a href="#安装">安装</a></li>
+<li><a href="#如何使用">如何使用</a></li>
+<li><a href="#web-console">Web Console</a></li>
+<li><a href="#卸载">卸载</a></li>
+<li><a href="#read-more">Read More</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+  
+  
+  
+</body>
+
+</html>

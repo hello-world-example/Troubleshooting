@@ -8,8 +8,23 @@
   </url>
   
   <url>
-    <loc>https://hello-world-example.github.io/Troubleshooting/docs/hidden/</loc>
-    <lastmod>2019-09-01T17:58:02+08:00</lastmod>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Commands/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/FAQ/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Install/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -18,18 +33,7 @@
   </url>
   
   <url>
-    <loc>https://hello-world-example.github.io/Troubleshooting/docs/with-toc/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hello-world-example.github.io/Troubleshooting/docs/without-toc/</loc>
-    <lastmod>2019-09-01T17:58:02+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://hello-world-example.github.io/Troubleshooting/docs/</loc>
-    <lastmod>2019-09-01T17:58:02+08:00</lastmod>
   </url>
   
   <url>

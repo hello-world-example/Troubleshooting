@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commands | Troubleshooting</title>
+
+
+<link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+
+
+
+
+<link rel="icon" href="/Troubleshooting/favicon.png" type="image/x-icon">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://hello-world-example.github.io/Troubleshooting/">Troubleshooting</a>
+</h2>
+
+
+
+
+
+
+    
+  
+  
+  
+
+  <style>
+  nav ul a[href$="\2fTroubleshooting\2f docs\2f Arthas\2f Commands\2f "] {
+      color: #004ed0;
+  }
+  </style>
+
+<ul>
+<li><strong>Arthas</strong>
+
+<ul>
+<li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
+</ul></li>
+</ul>
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/Troubleshooting/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Commands</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="命令列表">命令列表</h1>
+
+<h2 id="查看帮助">查看帮助</h2>
+
+<h3 id="help">$ help</h3>
+
+<p>查看支持的命令</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">      NAME         DESCRIPTION
+Base&gt;  help         Display Arthas Help
+Base&gt;  version      Display Arthas version
+Base&gt;  cls          Clear the screen
+Base&gt;  history      Display command history
+Base&gt;  keymap       Display all the available keymap <span style="color:#66d9ef">for</span> the specified connection.    
+Base&gt;  session      Display current session information
+Base&gt;  pwd          Return working directory name
+Base&gt;  cat          Concatenate and print files
+Base&gt;  shutdown     Shutdown Arthas server and exit the console
+Base&gt;  quit         退出
+Base&gt;  grep         管道过滤
+
+Sys&gt;   sysprop      Display, and change the system properties.
+Sys&gt;   sysenv       Display the system env.
+
+jvm&gt;   dashboard    Overview of target jvm<span style="color:#960050;background-color:#1e0010">&#39;</span>s thread, memory, gc, vm, tomcat info.
+jvm&gt;   jvm          Display the target JVM information
+jvm&gt;   thread       Display thread info, thread stack
+jvm&gt;   mbean        Display the mbean information       
+
+sc           Search all the classes loaded by JVM                         
+sm           Search the method of classes loaded by JVM                   
+classloader  Show classloader info                                       
+jad          Decompile class                                             
+getstatic    Show the static field of a class                             
+monitor      Monitor method execution statistics, e.g. total/success/failure count, average rt, fail rate, etc.                 
+stack        Display the stack trace <span style="color:#66d9ef">for</span> the specified class and method   
+
+trace        Trace the execution time of specified method invocation.     
+watch        Display the input/output parameter, <span style="color:#66d9ef">return</span> object, and thrown exception of specified method invocation
+tt           Time Tunnel
+ognl         Execute ognl expression.
+mc           Memory compiler, compiles java files into bytecode and class files in memory.
+redefine     Redefine classes. @see Instrumentation#redefineClasses<span style="color:#f92672">(</span>ClassDefinition...<span style="color:#f92672">)</span>
+dump         Dump class byte array from JVM
+options      View and change various Arthas options
+reset        Reset all the enhanced classes
+                        </code></pre></div>
+<h3 id="查看命令帮助">查看命令帮助</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ help reset
+$ reset -h</code></pre></div>
+<h2 id="基础命令-base">基础命令 Base</h2>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>help</td>
+<td>查看帮助</td>
+<td></td>
+</tr>
+
+<tr>
+<td>version</td>
+<td>版本信息</td>
+<td></td>
+</tr>
+
+<tr>
+<td>cls</td>
+<td>清屏</td>
+<td></td>
+</tr>
+
+<tr>
+<td>history</td>
+<td>打印命令历史</td>
+<td></td>
+</tr>
+
+<tr>
+<td>keymap</td>
+<td>支持的快捷键</td>
+<td></td>
+</tr>
+
+<tr>
+<td>session</td>
+<td>查看 Attach 的 Java 进程ID</td>
+<td></td>
+</tr>
+
+<tr>
+<td>pwd</td>
+<td>当前目录</td>
+<td></td>
+</tr>
+
+<tr>
+<td>cat</td>
+<td>查看文件内容</td>
+<td></td>
+</tr>
+
+<tr>
+<td>shutdown</td>
+<td>关闭 Arthas 服务端，所有 Arthas 客户端全部退出，重置所有增强过的类</td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>quit</td>
+<td>退出当前 Arthas 客户端，其他 Arthas 客户端不受影响</td>
+<td></td>
+</tr>
+
+<tr>
+<td>grep</td>
+<td>管道过滤</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="系统信息-sys">系统信息 Sys</h2>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>原理</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>sysprop</td>
+<td>系统属性 <code>System.getProperties()</code> ，可以 读取和设置，<strong>支持 Tab 自动补全</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td>sysenv</td>
+<td>环境变量 <code>System.getenv()</code> ，只可读取，<strong>支持 Tab 自动补全</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="虚拟机-信息-jvm">虚拟机 信息 JVM</h2>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>原理</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>dashboard</td>
+<td>线程、内存、GC、Runtime 信息；<code>dashboard -i1 -n1</code> 只执行一次</td>
+<td></td>
+</tr>
+
+<tr>
+<td>jvm</td>
+<td>RunTime、ClassLoading、Compilation、操作系统<br>GC（次数、耗时、收集器）、内存（堆内存、非堆内存）<br>线程（当前活跃、守护、曾经最大、启动过的线程次数、死锁线程数）<br>文件描述符（最大可用、当前）</td>
+<td></td>
+</tr>
+
+<tr>
+<td>thread [id]</td>
+<td><code>thread -b</code> 查找阻塞的线程，只支持找出 synchronized 关键字阻塞住的线程；<br><code>thread -n 3</code> 当前最忙的三个线程；<br>`thread</td>
+<td>grep WAITING` 等待的线程</td>
+</tr>
+
+<tr>
+<td>mbean</td>
+<td><code>mbean</code>所有 MBean信息<br><code>mbean java.lang:type=Memory</code> 属性信息<br><code>mbean -m java.lang:type=Memory</code> 元信息</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p><a href="https://blog.csdn.net/pange1991/article/details/53860651">Java 线程的 6种 状态及切换</a></p>
+
+<ol>
+<li>初始(<code>NEW</code>)：新创建了一个线程对象，但还没有调用start()方法。</li>
+<li>运行(<code>RUNNABLE</code>)：Java线程中将就绪（ready）和运行中（running）两种状态笼统的称为“运行”。
+线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取CPU的使用权，此时处于就绪状态（ready）。就绪状态的线程在获得CPU时间片后变为运行中状态（running）</li>
+<li>阻塞(<code>BLOCKED</code>)：表示线程阻塞于锁</li>
+<li>等待(<code>WAITING</code>)：进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断）。</li>
+<li>超时等待(<code>TIMED_WAITING</code>)：该状态不同于WAITING，它可以在指定的时间后自行返回</li>
+<li>终止(<code>TERMINATED</code>)：表示该线程已经执行完毕</li>
+</ol>
+</blockquote>
+
+<h2 id="类信息-class">类信息 Class</h2>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>原理</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>sc</td>
+<td><code>sc demo.*</code> 模糊搜索已加载的类<br><code>sc -d demo.MathGame</code> 类的详细信息（<strong>来自哪个 jar</strong>，接口、父类、注解&hellip;） <br><code>sc -d -f demo.MathGame</code> 类的字段信息</td>
+<td></td>
+</tr>
+
+<tr>
+<td>sm</td>
+<td><code>sm demo.MathGame</code> 查看类的方法<br><code>sm -d demo.MathGame</code> 查看每个方法的签名<br><code>sm -d demo.MathGame primeFactors</code> 制定方法签名</td>
+<td></td>
+</tr>
+
+<tr>
+<td>jad</td>
+<td><code>jad demo.MathGame</code> 反编译指定的类<br><code>jad demo.MathGame main</code> 反编译指的方法</td>
+<td></td>
+</tr>
+
+<tr>
+<td>dump [class]</td>
+<td>把指定类 dump 到本地文件，支持通配符</td>
+<td></td>
+</tr>
+
+<tr>
+<td>classloader</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>ognl</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>getstatic</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>classloader</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="热更新-hot">热更新 Hot</h2>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>原理</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>mc</td>
+<td>内存编译器</td>
+<td></td>
+</tr>
+
+<tr>
+<td>redefine</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="监控-debug">监控 Debug</h2>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>原理</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>monitor</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>watch</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>trace</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>stack</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>tt</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="全局开关">全局开关</h2>
+
+<blockquote>
+<p><a href="https://alibaba.github.io/arthas/options.html#options">https://alibaba.github.io/arthas/options.html#options</a></p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>``</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>``</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</article>
+
+      
+<div class="book-footer justify-end">
+  
+  
+  <div>
+    <a href="https://github.com/hello-world-example/Troubleshooting/edit/master/HuGo/content/docs/Arthas/Commands.md" target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/edit.svg" alt="Edit" /> Edit this page
+    </a>
+  </div>
+  
+</div>
+
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#命令列表">命令列表</a>
+<ul>
+<li><a href="#查看帮助">查看帮助</a>
+<ul>
+<li><a href="#help">$ help</a></li>
+<li><a href="#查看命令帮助">查看命令帮助</a></li>
+</ul></li>
+<li><a href="#基础命令-base">基础命令 Base</a></li>
+<li><a href="#系统信息-sys">系统信息 Sys</a></li>
+<li><a href="#虚拟机-信息-jvm">虚拟机 信息 JVM</a></li>
+<li><a href="#类信息-class">类信息 Class</a></li>
+<li><a href="#热更新-hot">热更新 Hot</a></li>
+<li><a href="#监控-debug">监控 Debug</a></li>
+<li><a href="#全局开关">全局开关</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+  
+  
+  
+</body>
+
+</html>

@@ -1,11 +1,12 @@
 ---
-headless: true
+headless: false
 ---
 
-- [简介]({{< relref "/" >}})
 
-- **示例**
-  - [默认带目录]({{< relref "/docs/with-toc.md" >}})
-  - [设置不带目录]({{< relref "/docs/without-toc.md" >}})
-  - [特有功能]({{< relref "/docs/shortcodes.md" >}})  
+
+- **Arthas**
+  - [安装]({{< relref "/docs/Arthas/Install.md" >}})
+  - [命令列表]({{< relref "/docs/Arthas/Commands.md" >}})
+  - [案例]({{< relref "/docs/Arthas/Case.md" >}})
+  - [常见问题]({{< relref "/docs/Arthas/FAQ.md" >}})
 

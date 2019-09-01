@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Introduction on Troubleshooting</title>
+    <title>ReadMe on Troubleshooting</title>
     <link>https://hello-world-example.github.io/Troubleshooting/</link>
-    <description>Recent content in Introduction on Troubleshooting</description>
+    <description>Recent content in ReadMe on Troubleshooting</description>
     <generator>Hugo -- gohugo.io</generator>
     
 	<atom:link href="https://hello-world-example.github.io/Troubleshooting/index.xml" rel="self" type="application/rss+xml" />
@@ -15,20 +15,45 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Troubleshooting/_sidebar/</guid>
-      <description> 简介
- 示例
- 默认带目录 设置不带目录 特有功能
-   </description>
+      <description> Arthas  安装 命令列表 案例 常见问题   </description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Troubleshooting/docs/hidden/</link>
+      <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Troubleshooting/docs/hidden/</guid>
-      <description>This page is hidden in menu Quondam non pater est dignior ille Eurotas Latent te facies Lorem markdownum arma ignoscas vocavit quoque ille texit mandata mentis ultimus, frementes, qui in vel. Hippotades Peleus pennas conscia cuiquam Caeneus quas.
- Pater demittere evincitque reddunt Maxime adhuc pressit huc Danaas quid freta Soror ego Luctus linguam saxa ultroque prior Tatiumque inquit Saepe liquitur subita superata dederat Anius sudor  Cum honorum Latona O fallor in sustinui iussorum equidem.</description>
+      <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/</guid>
+      <description>使用案例 诊断 Docker 里的 Java 进程 $ docker exec -it ${containerId} /bin/bash \  -c &amp;#34;wget https://alibaba.github.io/arthas/arthas-boot.jar &amp;amp;&amp;amp; java -jar arthas-boot.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Commands/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Commands/</guid>
+      <description>命令列表 查看帮助 $ help 查看支持的命令
+NAME DESCRIPTION Base&amp;gt; help Display Arthas Help Base&amp;gt; version Display Arthas version Base&amp;gt; cls Clear the screen Base&amp;gt; history Display command history Base&amp;gt; keymap Display all the available keymap for the specified connection. Base&amp;gt; session Display current session information Base&amp;gt; pwd Return working directory name Base&amp;gt; cat Concatenate and print files Base&amp;gt; shutdown Shutdown Arthas server and exit the console Base&amp;gt; quit 退出 Base&amp;gt; grep 管道过滤 Sys&amp;gt; sysprop Display, and change the system properties.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/FAQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/FAQ/</guid>
+      <description> 常见问题 [ERROR] Target process 80696 is not the process using port 3658, you will connect to an unexpected process. [ERROR] 1. Try to restart arthas-boot, select process 62498, shutdown it first. [ERROR] 2. Or try to use different telnet port, for example: java -jar arthas-boot.jar --telnet-port 9998 --http-port -1</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Install/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Install/</guid>
+      <description>Install 安装 在 Github 上找到最新的发布包：https://github.com/alibaba/arthas/releases
+$ wget https://github.com/alibaba/arthas/releases/download/arthas-all-3.1.1/arthas-3.1.1-bin.zip $ unzip arthas-3.1.1-bin.zip -d arthas $ cd arthas # 帮助 $ java -jar arthas-boot.jar -h 如何使用 # 进入交互页面 $ java -jar arthas-boot.jar [INFO] arthas-boot version: 3.1.1 [INFO] Process 62498 already using port 3658 [INFO] Process 62498 already using port 8563 [INFO] Found existing java process, please choose one and hit RETURN. * [1]: 62498 xxx Java 进程 xxx [2]: 54006 xxx Java 进程 xxx [3]: 53993 xxx Java 进程 xxx &amp;gt; 选择一个 Java 进程ID，进入交互页面 [INFO] arthas home: /opt/websuite/arthas [INFO] The target process already listen port 3658, skip attach.</description>
     </item>
     
     <item>
@@ -38,26 +63,6 @@
       
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/shortcodes/</guid>
       <description>各种样式 折叠 Default {{&amp;lt; expand &amp;gt;}} ## Markdown content Lorem markdownum insigne... {{&amp;lt; /expand &amp;gt;}}  Expand ↕  Markdown content Lorem markdownum insigne&amp;hellip;    With Custom Label {{&amp;lt; expand &amp;#34;Custom Label&amp;#34; &amp;#34;...&amp;#34; &amp;gt;}} ## Markdown content Lorem markdownum insigne... {{&amp;lt; /expand &amp;gt;}}  Custom Label ...  Markdown content Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa protulit, sed sed aere valvis inhaesuro Pallas animam: qui quid, ignes.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://hello-world-example.github.io/Troubleshooting/docs/with-toc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Troubleshooting/docs/with-toc/</guid>
-      <description>默认带导航 Cognita laeva illo fracta Lorem markdownum pavent auras, surgit nunc cingentibus libet Laomedonque que est. Pastor An arbor filia foedat, ne fugit aliter, per. Helicona illas et callida neptem est Oresitrophos caput, dentibus est venit. Tenet reddite famuli praesentem fortibus, quaeque vis foret si frondes gelidos gravidae circumtulit inpulit armenta nativum.
- Te at cruciabere vides rubentis manebo Maturuit in praetemptat ruborem ignara postquam habitasse Subitarum supplevit quoque fontesque venabula spretis modo Montis tot est mali quasque gravis Quinquennem domus arsit ipse Pellem turis pugnabant locavit  Natus quaerere Pectora et sine mulcere, coniuge dum tincta incurvae.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://hello-world-example.github.io/Troubleshooting/docs/without-toc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Troubleshooting/docs/without-toc/</guid>
-      <description>不使用导航 Tanto oblite Lorem markdownum pectora novis patenti igne sua opus aurae feras materiaque illic demersit imago et aristas questaque posset. Vomit quoque suo inhaesuro clara. Esse cumque, per referri triste. Ut exponit solisque communis in tendens vincetis agisque iamque huic bene ante vetat omina Thebae rates. Aeacus servat admonitu concidit, ad resimas vultus et rugas vultu dignamque Siphnon.
-Quam iugulum regia simulacra, plus meruit humo pecorumque haesit, ab discedunt dixit: ritu pharetramque.</description>
     </item>
     
   </channel>
