@@ -55,6 +55,7 @@ https://github.com/alex-shpak/hugo-book
 <ul>
 <li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
 </ul></li>
@@ -94,6 +95,13 @@ https://github.com/alex-shpak/hugo-book
 
 <h1 id="命令列表">命令列表</h1>
 
+<blockquote>
+<p>启动示例程序</p>
+
+<p>​ wget <a href="https://alibaba.github.io/arthas/arthas-demo.jar">https://alibaba.github.io/arthas/arthas-demo.jar</a>
+​ java -jar arthas-demo.jar</p>
+</blockquote>
+
 <h2 id="查看帮助">查看帮助</h2>
 
 <h3 id="help">$ help</h3>
@@ -118,26 +126,27 @@ Sys&gt;   sysenv       Display the system env.
 jvm&gt;   dashboard    Overview of target jvm<span style="color:#960050;background-color:#1e0010">&#39;</span>s thread, memory, gc, vm, tomcat info.
 jvm&gt;   jvm          Display the target JVM information
 jvm&gt;   thread       Display thread info, thread stack
-jvm&gt;   mbean        Display the mbean information       
+jvm&gt;   mbean        Display the mbean information
 
-sc           Search all the classes loaded by JVM                         
-sm           Search the method of classes loaded by JVM                   
-classloader  Show classloader info                                       
-jad          Decompile class                                             
-getstatic    Show the static field of a class                             
-monitor      Monitor method execution statistics, e.g. total/success/failure count, average rt, fail rate, etc.                 
-stack        Display the stack trace <span style="color:#66d9ef">for</span> the specified class and method   
+Hot&gt;   mc           Memory compiler, compiles java files o class files in memory.
+Hot&gt;   redefine     Redefine classes. @see Instrumentation#redefineClasses
 
-trace        Trace the execution time of specified method invocation.     
-watch        Display the input/output parameter, <span style="color:#66d9ef">return</span> object, and thrown exception of specified method invocation
-tt           Time Tunnel
-ognl         Execute ognl expression.
-mc           Memory compiler, compiles java files into bytecode and class files in memory.
-redefine     Redefine classes. @see Instrumentation#redefineClasses<span style="color:#f92672">(</span>ClassDefinition...<span style="color:#f92672">)</span>
-dump         Dump class byte array from JVM
+Class&gt; sc           Search all the classes loaded by JVM                         
+Class&gt; sm           Search the method of classes loaded by JVM                   
+Class&gt; jad          Decompile class
+Class&gt; dump         Dump class byte array from JVM
+Class&gt; ognl         Execute ognl expression.
+Class&gt; getstatic    Show the static field of a class
+Class&gt; classloader  Show classloader info
+
+Debug&gt; watch        Display the input/output parameter, <span style="color:#66d9ef">return</span> object...
+Debug&gt; trace        Trace the execution time of specified method invocation.
+Debug&gt; stack        Display the stack trace <span style="color:#66d9ef">for</span> the specified class and method   
+Debug&gt; tt           Time Tunnel
+Debug&gt; monitor      Monitor method execution statistics, e.g. total/success/failure count...
+
 options      View and change various Arthas options
-reset        Reset all the enhanced classes
-                        </code></pre></div>
+reset        Reset all the enhanced classes</code></pre></div>
 <h3 id="查看命令帮助">查看命令帮助</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ help reset
 $ reset -h</code></pre></div>
@@ -266,25 +275,25 @@ $ reset -h</code></pre></div>
 
 <tbody>
 <tr>
-<td>dashboard</td>
+<td><a href="https://alibaba.github.io/arthas/dashboard.html">dashboard</a></td>
 <td>线程、内存、GC、Runtime 信息；<code>dashboard -i1 -n1</code> 只执行一次</td>
 <td></td>
 </tr>
 
 <tr>
-<td>jvm</td>
+<td><a href="https://alibaba.github.io/arthas/jvm.html">jvm</a></td>
 <td>RunTime、ClassLoading、Compilation、操作系统<br>GC（次数、耗时、收集器）、内存（堆内存、非堆内存）<br>线程（当前活跃、守护、曾经最大、启动过的线程次数、死锁线程数）<br>文件描述符（最大可用、当前）</td>
 <td></td>
 </tr>
 
 <tr>
-<td>thread [id]</td>
+<td><a href="https://alibaba.github.io/arthas/thread.html">thread [id]</a></td>
 <td><code>thread -b</code> 查找阻塞的线程，只支持找出 synchronized 关键字阻塞住的线程；<br><code>thread -n 3</code> 当前最忙的三个线程；<br>`thread</td>
 <td>grep WAITING` 等待的线程</td>
 </tr>
 
 <tr>
-<td>mbean</td>
+<td><a href="https://alibaba.github.io/arthas/mbean.html">mbean</a></td>
 <td><code>mbean</code>所有 MBean信息<br><code>mbean java.lang:type=Memory</code> 属性信息<br><code>mbean -m java.lang:type=Memory</code> 元信息</td>
 <td></td>
 </tr>
@@ -318,51 +327,45 @@ $ reset -h</code></pre></div>
 
 <tbody>
 <tr>
-<td>sc</td>
+<td><a href="https://alibaba.github.io/arthas/sc.html">sc</a></td>
 <td><code>sc demo.*</code> 模糊搜索已加载的类<br><code>sc -d demo.MathGame</code> 类的详细信息（<strong>来自哪个 jar</strong>，接口、父类、注解&hellip;） <br><code>sc -d -f demo.MathGame</code> 类的字段信息</td>
 <td></td>
 </tr>
 
 <tr>
-<td>sm</td>
-<td><code>sm demo.MathGame</code> 查看类的方法<br><code>sm -d demo.MathGame</code> 查看每个方法的签名<br><code>sm -d demo.MathGame primeFactors</code> 制定方法签名</td>
+<td><a href="https://alibaba.github.io/arthas/sm.html">sm</a></td>
+<td><code>sm demo.MathGame</code> 查看类的方法<br><code>sm -d demo.MathGame</code> 查看每个方法的签名<br><code>sm -d demo.MathGame primeFactors</code> 查看指定方法签名</td>
 <td></td>
 </tr>
 
 <tr>
-<td>jad</td>
+<td><a href="https://alibaba.github.io/arthas/jad.html">jad</a></td>
 <td><code>jad demo.MathGame</code> 反编译指定的类<br><code>jad demo.MathGame main</code> 反编译指的方法</td>
 <td></td>
 </tr>
 
 <tr>
-<td>dump [class]</td>
+<td><a href="https://alibaba.github.io/arthas/dump.html">dump [class]</a></td>
 <td>把指定类 dump 到本地文件，支持通配符</td>
 <td></td>
 </tr>
 
 <tr>
-<td>classloader</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td>ognl</td>
-<td></td>
+<td><a href="https://alibaba.github.io/arthas/ognl.html">ognl</a></td>
+<td>执行ognl表达式</td>
 <td></td>
 </tr>
 
 <tr>
-<td>getstatic</td>
-<td></td>
+<td><a href="https://alibaba.github.io/arthas/getstatic.html">getstatic</a></td>
+<td>查看类的静态属性 <br><code>getstatic demo.MathGame random</code></td>
 <td></td>
 </tr>
 
 <tr>
-<td>classloader</td>
-<td></td>
-<td></td>
+<td><a href="https://alibaba.github.io/arthas/classloader.html">classloader</a></td>
+<td><code>classloader</code></td>
+<td><code>classloader -t</code>统计 classloader 信息 <br><code>classloader -c 3d4eac69  -r META-INF/MANIFEST.MF</code> 查找资源</td>
 </tr>
 </tbody>
 </table>
@@ -380,30 +383,31 @@ $ reset -h</code></pre></div>
 
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td>mc</td>
-<td>内存编译器</td>
+<td><a href="https://alibaba.github.io/arthas/mc.html">mc</a></td>
+<td>Memory Compiler/内存编译器，编译<code>.java</code>文件生成<code>.class</code></td>
 <td></td>
 </tr>
 
 <tr>
-<td>redefine</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
+<td><a href="https://alibaba.github.io/arthas/redefine.html">redefine</a></td>
+<td>加载外部的 <code>.class</code> 文件<br><code>redefine /tmp/Test.class</code></td>
+<td><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/instrument/Instrumentation.html">Instrumentation</a></td>
 </tr>
 </tbody>
 </table>
+
+<blockquote>
+<ul>
+<li>jad命令反编译，然后可以用其它编译器，比如vim来修改源码</li>
+<li>mc命令来内存编译修改过的代码</li>
+<li>用redefine命令加载新的字节码
+
+<ul>
+<li>不允许新增加field/method</li>
+<li>正在跑的函数，没有退出不能生效</li>
+</ul></li>
+</ul>
+</blockquote>
 
 <h2 id="监控-debug">监控 Debug</h2>
 
@@ -418,32 +422,32 @@ $ reset -h</code></pre></div>
 
 <tbody>
 <tr>
-<td>monitor</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td>watch</td>
-<td></td>
+<td><a href="https://alibaba.github.io/arthas/watch.html">watch</a></td>
+<td>观察方法的 <strong>参数</strong>、<strong>返回值</strong>、<strong>异常</strong><br><code>watch demo.MathGame primeFactors &quot;{params,returnObj}&quot; -x 2</code> 打印参数和返回值</td>
 <td></td>
 </tr>
 
 <tr>
-<td>trace</td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td>stack</td>
-<td></td>
+<td><a href="https://alibaba.github.io/arthas/trace.html">trace</a></td>
+<td>方法路径上的每个节点上耗时<br><code>trace demo.MathGame run</code><br><code>trace demo.MathGame run '#cost &gt; 10'</code> 耗时大于10ms的调用路径</td>
 <td></td>
 </tr>
 
 <tr>
-<td>tt</td>
+<td><a href="https://alibaba.github.io/arthas/stack.html">stack</a></td>
+<td>当前方法被调用的路径br<br><code>stack demo.MathGame primeFactors</code></td>
 <td></td>
+</tr>
+
+<tr>
+<td><a href="https://alibaba.github.io/arthas/tt.html">tt</a></td>
+<td>TimeTunnel <br><code>tt -t -n3 demo.MathGame primeFactors</code> + <code>tt -i 1003</code></td>
+<td></td>
+</tr>
+
+<tr>
+<td><a href="https://alibaba.github.io/arthas/monitor.html">monitor</a></td>
+<td>对指定类的方法进行监控(次数、成功、失败 等)，<code>-c</code> 指定监控周期<br/><code>monitor -c 5 demo.MathGame primeFactors</code></td>
 <td></td>
 </tr>
 </tbody>
@@ -454,70 +458,17 @@ $ reset -h</code></pre></div>
 <blockquote>
 <p><a href="https://alibaba.github.io/arthas/options.html#options">https://alibaba.github.io/arthas/options.html#options</a></p>
 </blockquote>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td>``</td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td>``</td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
 </article>
 
       
-<div class="book-footer justify-end">
+<div class="book-footer justify-between">
+  
+  <div>
+    
+    <a href="https://github.com/hello-world-example/Troubleshooting/commit/5fff3a5933aa303c4e3f95939f7b8c0327b26142" title='Last modified Sep 2, 2019 by kaibin.yang' target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/calendar.svg" alt="Changed" /> Sep 2, 2019
+    </a>
+  </div>
   
   
   <div>
