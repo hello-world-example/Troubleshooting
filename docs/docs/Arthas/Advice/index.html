@@ -95,17 +95,99 @@ https://github.com/alex-shpak/hugo-book
 
 <h1 id="advice">Advice</h1>
 
+<blockquote>
+<p><a href="https://github.com/alibaba/arthas/blob/master/core/src/main/java/com/taobao/arthas/core/advisor/Advice.java">https://github.com/alibaba/arthas/blob/master/core/src/main/java/com/taobao/arthas/core/advisor/Advice.java</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">class</span> Advice {
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 本次调用类所在的 ClassLoader
+</span><span style="color:#75715e">     */</span>
+    ClassLoader <span style="color:#a6e22e">loader</span>;
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 本次调用类的 Class 引用
+</span><span style="color:#75715e">     */</span>
+    Class<span style="color:#f92672">&lt;?&gt;</span> clazz;
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 本次调用方法反射引用
+</span><span style="color:#75715e">     */</span>
+    ArthasMethod <span style="color:#a6e22e">method</span>;
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * ❤ 本次调用类的实例 ❤
+</span><span style="color:#75715e">     */</span>
+    Object <span style="color:#a6e22e">target</span>;
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * ❤ 本次调用参数列表，这是一个数组，如果方法是无参方法则为空数组 ❤
+</span><span style="color:#75715e">     */</span>
+    Object[] <span style="color:#a6e22e">params</span>;
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * ❤ 本次调用返回的对象，返回值 void，则值为 null ❤
+</span><span style="color:#75715e">     */</span>
+    Object <span style="color:#a6e22e">returnObj</span>;
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * ❤ 本次调用抛出的异常 ❤
+</span><span style="color:#75715e">     */</span>
+    Throwable <span style="color:#a6e22e">throwExp</span>;
+
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 辅助判断标记
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isBefore</span>;
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 辅助判断标记
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isThrow</span>;
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 辅助判断标记
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isReturn</span>;
+}</code></pre></div>
+<blockquote>
+<p><a href="https://github.com/alibaba/arthas/blob/master/core/src/main/java/com/taobao/arthas/core/advisor/ArthasMethod.java">https://github.com/alibaba/arthas/blob/master/core/src/main/java/com/taobao/arthas/core/advisor/ArthasMethod.java</a></p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">class</span> ArthasMethod {
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 方法类型
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">type</span>;
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 构造方法
+</span><span style="color:#75715e">     */</span>
+    Constructor<span style="color:#f92672">&lt;?&gt;</span> constructor;
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 普通方法
+</span><span style="color:#75715e">     */</span>
+    Method <span style="color:#a6e22e">method</span>;
+}</code></pre></div>
+<h2 id="内置变量">内置变量</h2>
+
+<ul>
+<li><code>#cost</code> 单位 ms，表示耗时</li>
+</ul>
+
 <h2 id="read-more">Read More</h2>
 
 <ul>
 <li><a href="https://alibaba.github.io/arthas/watch.html">watch</a> 命令</li>
 <li><a href="https://alibaba.github.io/arthas/advice-class.html">表达式核心变量</a></li>
-<li><a href="https://commons.apache.org/proper/commons-ognl/language-guide.html">commons-ognl</a></li>
+<li>Issues
+
+<ul>
+<li><a href="https://github.com/alibaba/arthas/issues/71">【Arthas问题排查集】活用ognl表达式</a></li>
+<li><a href="https://github.com/alibaba/arthas/issues/71">Arthas的一些特殊用法文档说明</a></li>
+</ul></li>
+<li><a href="https://hello-world-example.github.io/Apache-Commons/docs/Ognl/">Apache Commons Ognl</a></li>
 </ul>
 </article>
 
       
-<div class="book-footer justify-end">
+<div class="book-footer justify-between">
+  
+  <div>
+    
+    <a href="https://github.com/hello-world-example/Troubleshooting/commit/e64667ff31762ba5b6c2e36f50e9469cfc6aed6c" title='Last modified Sep 7, 2019 by kaibin.yang' target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/calendar.svg" alt="Changed" /> Sep 7, 2019
+    </a>
+  </div>
   
   
   <div>
@@ -128,6 +210,7 @@ https://github.com/alex-shpak/hugo-book
 <ul>
 <li><a href="#advice">Advice</a>
 <ul>
+<li><a href="#内置变量">内置变量</a></li>
 <li><a href="#read-more">Read More</a></li>
 </ul></li>
 </ul>

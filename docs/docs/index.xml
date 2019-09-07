@@ -15,7 +15,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Advice/</guid>
-      <description> Advice Read More  watch 命令 表达式核心变量 commons-ognl  </description>
+      <description>Advice  https://github.com/alibaba/arthas/blob/master/core/src/main/java/com/taobao/arthas/core/advisor/Advice.java
+ public class Advice { /** * 本次调用类所在的 ClassLoader */ ClassLoader loader; /** * 本次调用类的 Class 引用 */ Class&amp;lt;?&amp;gt; clazz; /** * 本次调用方法反射引用 */ ArthasMethod method; /** * ❤ 本次调用类的实例 ❤ */ Object target; /** * ❤ 本次调用参数列表，这是一个数组，如果方法是无参方法则为空数组 ❤ */ Object[] params; /** * ❤ 本次调用返回的对象，返回值 void，则值为 null ❤ */ Object returnObj; /** * ❤ 本次调用抛出的异常 ❤ */ Throwable throwExp; /** * 辅助判断标记 */ boolean isBefore; /** * 辅助判断标记 */ boolean isThrow; /** * 辅助判断标记 */ boolean isReturn; }  https://github.</description>
     </item>
     
     <item>
