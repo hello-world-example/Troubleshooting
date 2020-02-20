@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Docs | Troubleshooting</title>
+<title>Jstack | Troubleshooting</title>
 
 
 <link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
@@ -15,7 +15,6 @@
 <link rel="icon" href="/Troubleshooting/favicon.png" type="image/x-icon">
 
 
-<link rel="alternate" type="application/rss+xml" href="https://hello-world-example.github.io/Troubleshooting/docs/index.xml" title="Troubleshooting" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -45,7 +44,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   <style>
-  nav ul a[href$="\2fTroubleshooting\2f docs\2f "] {
+  nav ul a[href$="\2fTroubleshooting\2f docs\2fJava\2fjstack\2f "] {
       color: #004ed0;
   }
   </style>
@@ -101,18 +100,41 @@ https://github.com/alex-shpak/hugo-book
   <label for="menu-control">
     <img src="/Troubleshooting/svg/menu.svg" alt="Menu" />
   </label>
-  <strong>Docs</strong>
+  <strong>Jstack</strong>
 </header>
 
       
-<article class="markdown"></article>
+<article class="markdown">
+
+<h1 id="jstack">jstack</h1>
+
+<p><code>jstack</code> 可以打印出 线程的状态、调用栈、锁资源 等信息。 可以用于分析死锁、性能瓶颈等问题。用法相对简单但非常有用。</p>
+
+<h2 id="参数">参数</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-F          当 jstack <span style="color:#f92672">[</span>-l<span style="color:#f92672">]</span> &lt;pid&gt; 无相应的时候可以使用该参数强制dump
+
+-l          打印关于锁的附加信息,例如属于java.util.concurrent的ownable synchronizers列表
+
+-m          打印 java 和 native 代码的所有栈信息
+
+-h|-help    打印帮助信息</code></pre></div>
+<h2 id="read-more">Read More</h2>
+
+<ul>
+<li><p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jstack.html">jstack</a> 官方文档</p></li>
+
+<li><p><a href="http://www.blogjava.net/jzone/articles/303979.html">JAVA线程dump的分析 &mdash; jstack pid</a></p></li>
+</ul>
+</article>
 
       
 <div class="book-footer justify-end">
   
   
   <div>
-    
+    <a href="https://github.com/hello-world-example/Troubleshooting/edit/master/HuGo/content/docs/Java/jstack.md" target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/edit.svg" alt="Edit" /> Edit this page
+    </a>
   </div>
   
 </div>
@@ -123,6 +145,18 @@ https://github.com/alex-shpak/hugo-book
 
     
   
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#jstack">jstack</a>
+<ul>
+<li><a href="#参数">参数</a></li>
+<li><a href="#read-more">Read More</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
 
 
 

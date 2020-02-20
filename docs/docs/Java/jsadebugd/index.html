@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Docs | Troubleshooting</title>
+<title>Jsadebugd | Troubleshooting</title>
 
 
 <link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
@@ -15,7 +15,6 @@
 <link rel="icon" href="/Troubleshooting/favicon.png" type="image/x-icon">
 
 
-<link rel="alternate" type="application/rss+xml" href="https://hello-world-example.github.io/Troubleshooting/docs/index.xml" title="Troubleshooting" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -45,7 +44,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   <style>
-  nav ul a[href$="\2fTroubleshooting\2f docs\2f "] {
+  nav ul a[href$="\2fTroubleshooting\2f docs\2fJava\2fjsadebugd\2f "] {
       color: #004ed0;
   }
   </style>
@@ -101,18 +100,53 @@ https://github.com/alex-shpak/hugo-book
   <label for="menu-control">
     <img src="/Troubleshooting/svg/menu.svg" alt="Menu" />
   </label>
-  <strong>Docs</strong>
+  <strong>Jsadebugd</strong>
 </header>
 
       
-<article class="markdown"></article>
+<article class="markdown">
+
+<h1 id="jsadebugd">jsadebugd</h1>
+
+<p><code>jsadebugd</code>依附到一个Java进程，开启一个rmi服务，担当一个调试服务器的作用，可供 <code>jinfo</code>、<code>jmap</code>、<code>jstack</code> 命令拉取远程机器上的信息。</p>
+
+<h2 id="开启服务">开启服务</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jsadebugd &lt;pid&gt;
+Attaching to process ID &lt;pid&gt; and starting RMI services, please wait...
+Debugger attached and RMI services started.</code></pre></div>
+<p>开启之后可以通过 <code>Ctrl + C</code> 关闭停止</p>
+
+<h2 id="远程连接">远程连接</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jinfo localhost
+  
+Attaching to remote server localhost, please wait...
+Debugger attached successfully.
+Server compiler detected.
+JVM version is <span style="color:#ae81ff">24</span>.75-b04
+Java System Properties:
+  
+idea.version <span style="color:#f92672">=</span> <span style="color:#f92672">=</span><span style="color:#ae81ff">2016</span>.3.3
+java.runtime.name <span style="color:#f92672">=</span> Java<span style="color:#f92672">(</span>TM<span style="color:#f92672">)</span> SE Runtime Environment
+java.vm.version <span style="color:#f92672">=</span> <span style="color:#ae81ff">24</span>.75-b04
+  
+......</code></pre></div>
+<p><code>jmap</code>、<code>jstack</code> 类似。</p>
+
+<h2 id="参考">参考</h2>
+
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jsadebugd.html">jsadebugd</a>官方文档</p>
+</blockquote>
+</article>
 
       
 <div class="book-footer justify-end">
   
   
   <div>
-    
+    <a href="https://github.com/hello-world-example/Troubleshooting/edit/master/HuGo/content/docs/Java/jsadebugd.md" target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/edit.svg" alt="Edit" /> Edit this page
+    </a>
   </div>
   
 </div>
@@ -123,6 +157,19 @@ https://github.com/alex-shpak/hugo-book
 
     
   
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#jsadebugd">jsadebugd</a>
+<ul>
+<li><a href="#开启服务">开启服务</a></li>
+<li><a href="#远程连接">远程连接</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
 
 
 

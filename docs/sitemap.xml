@@ -33,7 +33,52 @@
   </url>
   
   <url>
-    <loc>https://hello-world-example.github.io/Troubleshooting/docs/shortcodes/</loc>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Java/jcmd/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Java/jhat/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Java/jinfo/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Java/jmap/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Java/jmc/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Java/jps/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Java/jsadebugd/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Java/jstack/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Java/jstat/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Java/jstatd/</loc>
     <priority>0</priority>
   </url>
   
@@ -44,6 +89,10 @@
   <url>
     <loc>https://hello-world-example.github.io/Troubleshooting/</loc>
     <lastmod>2019-09-02T00:03:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Java/</loc>
   </url>
   
 </urlset>

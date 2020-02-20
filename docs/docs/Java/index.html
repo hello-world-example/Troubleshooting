@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Docs | Troubleshooting</title>
+<title>ReadMe | Troubleshooting</title>
 
 
 <link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
@@ -15,7 +15,7 @@
 <link rel="icon" href="/Troubleshooting/favicon.png" type="image/x-icon">
 
 
-<link rel="alternate" type="application/rss+xml" href="https://hello-world-example.github.io/Troubleshooting/docs/index.xml" title="Troubleshooting" />
+<link rel="alternate" type="application/rss+xml" href="https://hello-world-example.github.io/Troubleshooting/docs/Java/index.xml" title="Troubleshooting" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -45,7 +45,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   <style>
-  nav ul a[href$="\2fTroubleshooting\2f docs\2f "] {
+  nav ul a[href$="\2fTroubleshooting\2f docs\2fJava\2f "] {
       color: #004ed0;
   }
   </style>
@@ -101,18 +101,60 @@ https://github.com/alex-shpak/hugo-book
   <label for="menu-control">
     <img src="/Troubleshooting/svg/menu.svg" alt="Menu" />
   </label>
-  <strong>Docs</strong>
+  <strong>ReadMe</strong>
 </header>
 
       
-<article class="markdown"></article>
+<article class="markdown">
+
+<p>可以使用下面这个工具类来排查 Java 应用和JVM的问题。这些命令大部分是不受支持的，有可能在以后的JDK版本中被移除</p>
+
+<ul>
+<li><strong>内存监控</strong>
+
+<ul>
+<li><code>jstat</code></li>
+</ul></li>
+<li><strong>故障排查</strong>
+
+<ul>
+<li><code>jcmd</code>: 向运行中的 JVM 发送诊断命令</li>
+<li><code>jinfo</code>: [<strong>试验性的</strong>]获得 JVM 配置信息</li>
+<li><code>jhat</code>:  [<strong>试验性的</strong>]方便析 Java 堆 的工具</li>
+<li><code>jmap</code>:  [<strong>试验性的</strong>]主要用于打印Java进程的 堆 信息</li>
+<li><code>jsadebugd</code>: [<strong>试验性的</strong>]依附到一个Java进程或核心文件，担当一个调试服务器的作用</li>
+<li><code>jstack</code>:  [<strong>试验性的</strong>]主要用于打印Java进程的 栈 信息</li>
+</ul></li>
+<li><strong>图形工具</strong>
+
+<ul>
+<li><code>jmc</code></li>
+<li><code>jvisualvm</code></li>
+<li><code>jconsole</code></li>
+</ul></li>
+</ul>
+
+<h2 id="read-more">Read More</h2>
+
+<blockquote>
+<ul>
+<li>官方文档：<a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/toc.html">Java Platform, Standard Edition Tools Reference</a>
+
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/s11-troubleshooting_tools.html">Troubleshooting</a></li>
+</ul></li>
+</ul>
+</blockquote>
+</article>
 
       
 <div class="book-footer justify-end">
   
   
   <div>
-    
+    <a href="https://github.com/hello-world-example/Troubleshooting/edit/master/HuGo/content/docs/Java/_index.md" target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/edit.svg" alt="Edit" /> Edit this page
+    </a>
   </div>
   
 </div>
@@ -123,6 +165,17 @@ https://github.com/alex-shpak/hugo-book
 
     
   
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#read-more">Read More</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
 
 
 

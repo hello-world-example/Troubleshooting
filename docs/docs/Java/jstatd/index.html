@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jstatd | Troubleshooting</title>
+
+
+<link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+
+
+
+
+<link rel="icon" href="/Troubleshooting/favicon.png" type="image/x-icon">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://hello-world-example.github.io/Troubleshooting/">Troubleshooting</a>
+</h2>
+
+
+
+
+
+
+    
+  
+  
+  
+
+  <style>
+  nav ul a[href$="\2fTroubleshooting\2f docs\2fJava\2fjstatd\2f "] {
+      color: #004ed0;
+  }
+  </style>
+
+<ul>
+<li><strong>Arthas</strong>
+
+<ul>
+<li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
+</ul></li>
+<li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
+
+<ul>
+<li><a href="/Troubleshooting/docs/Java/jcmd/"><sup>🌈</sup>jcmd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jps/">jps</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstat/">jstat</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstack/">jstack</a></li>
+<li><a href="/Troubleshooting/docs/Java/jmap/">jmap</a></li>
+<li><a href="/Troubleshooting/docs/Java/jhat/">jhat</a></li>
+<li><a href="/Troubleshooting/docs/Java/jinfo/">jinfo</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstatd/">jstatd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jsadebugd/">jsadebugd</a></li>
+</ul></li>
+</ul>
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/Troubleshooting/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Jstatd</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="jstatd">jstatd</h1>
+
+<p>jstatd 会开启一个 RMI 服务，供其他机器进行远程监控</p>
+
+<h2 id="参数">参数</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-nr     如果RMI注册中心没有找到，不会创建一个内部的RMI注册中心
+-p      RMI端口，默认为1099
+-n      RMI名称， 默认是 JStatRemoteHost
+-J      传递JVM参数</code></pre></div>
+<h2 id="例子">例子</h2>
+
+<p><strong>新建文件 <code>jstatd.all.policy</code>内容如下，给jstatd授予所有权限</strong></p>
+
+<pre><code>grant codebase &quot;file:${java.home}/../lib/tools.jar&quot; {   
+    permission java.security.AllPermission;
+};
+</code></pre>
+
+<p><strong>开启 jstatd 守护进程</strong>，开启后会有一个光标一直在闪，<code>Ctrl + C</code> 退出</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">jstatd -J-Djava.security.policy<span style="color:#f92672">=</span>jstatd.all.policy</code></pre></div>
+<p><strong>绑定端口和设置名称</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">jstatd -J-Djava.security.policy<span style="color:#f92672">=</span>jstatd.all.policy -p <span style="color:#ae81ff">6789</span> -n rmiJstatsName</code></pre></div>
+<p><strong>使用 jps 远程监控</strong>
+假设 jstatd 的所在机器是 <code>192.168.4.35</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">jps rmi://192.168.4.35:6789/rmiJstatsName</code></pre></div>
+<p>输出结果</p>
+
+<pre><code>11452 RemoteMavenServer
+4440 Jstatd
+10016 Launcher
+</code></pre>
+
+<p><strong>使用 jstat 远程监控</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">jstat -gcutil <span style="color:#ae81ff">11452</span>@192.168.4.35:6789/rmiJstatsName <span style="color:#ae81ff">500</span> <span style="color:#ae81ff">10</span></code></pre></div>
+<p><strong>打开日志输出</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">jstatd -J-Djava.security.policy<span style="color:#f92672">=</span>jstatd.all.policy -J-Djava.rmi.server.logCalls<span style="color:#f92672">=</span>true</code></pre></div>
+<h2 id="read-more">Read More</h2>
+
+<ul>
+<li>官网 <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/jstatd.html">jstatd</a></li>
+<li><a href="http://blog.csdn.net/fenglibing/article/details/17323515">jstatd 命令(Java Statistics Monitoring Daemon) </a></li>
+<li><a href="http://docs.oracle.com/javase/8/docs/technotes/guides/security/PolicyFiles.html">Default Policy Implementation and Policy File Syntax</a></li>
+</ul>
+</article>
+
+      
+<div class="book-footer justify-end">
+  
+  
+  <div>
+    <a href="https://github.com/hello-world-example/Troubleshooting/edit/master/HuGo/content/docs/Java/jstatd.md" target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/edit.svg" alt="Edit" /> Edit this page
+    </a>
+  </div>
+  
+</div>
+
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#jstatd">jstatd</a>
+<ul>
+<li><a href="#参数">参数</a></li>
+<li><a href="#例子">例子</a></li>
+<li><a href="#read-more">Read More</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+  
+  
+  
+</body>
+
+</html>

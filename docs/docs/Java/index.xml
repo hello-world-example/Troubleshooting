@@ -2,71 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ReadMe on Troubleshooting</title>
-    <link>https://hello-world-example.github.io/Troubleshooting/</link>
+    <link>https://hello-world-example.github.io/Troubleshooting/docs/Java/</link>
     <description>Recent content in ReadMe on Troubleshooting</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	<atom:link href="https://hello-world-example.github.io/Troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hello-world-example.github.io/Troubleshooting/docs/Java/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title></title>
-      <link>https://hello-world-example.github.io/Troubleshooting/_sidebar/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Troubleshooting/_sidebar/</guid>
-      <description> Arthas  安装 命令列表 Advice 案例 常见问题  JDK 内建  🌈jcmd jps jstat jstack jmap jhat jinfo jstatd jsadebugd   </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Advice/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Advice/</guid>
-      <description>Advice  https://github.com/alibaba/arthas/blob/master/core/src/main/java/com/taobao/arthas/core/advisor/Advice.java
- public class Advice { /** * 本次调用类所在的 ClassLoader */ ClassLoader loader; /** * 本次调用类的 Class 引用 */ Class&amp;lt;?&amp;gt; clazz; /** * 本次调用方法反射引用 */ ArthasMethod method; /** * ❤ 本次调用类的实例 ❤ */ Object target; /** * ❤ 本次调用参数列表，这是一个数组，如果方法是无参方法则为空数组 ❤ */ Object[] params; /** * ❤ 本次调用返回的对象，返回值 void，则值为 null ❤ */ Object returnObj; /** * ❤ 本次调用抛出的异常 ❤ */ Throwable throwExp; /** * 辅助判断标记 */ boolean isBefore; /** * 辅助判断标记 */ boolean isThrow; /** * 辅助判断标记 */ boolean isReturn; }  https://github.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/</guid>
-      <description>使用案例 诊断 Docker 里的 Java 进程 $ docker exec -it ${containerId} /bin/bash \  -c &amp;#34;wget https://alibaba.github.io/arthas/arthas-boot.jar &amp;amp;&amp;amp; java -jar arthas-boot.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Commands/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Commands/</guid>
-      <description>命令列表  启动示例程序
-​ wget https://alibaba.github.io/arthas/arthas-demo.jar ​ java -jar arthas-demo.jar
- 查看帮助 $ help 查看支持的命令
-NAME DESCRIPTION Base&amp;gt; help Display Arthas Help Base&amp;gt; version Display Arthas version Base&amp;gt; cls Clear the screen Base&amp;gt; history Display command history Base&amp;gt; keymap Display all the available keymap for the specified connection. Base&amp;gt; session Display current session information Base&amp;gt; pwd Return working directory name Base&amp;gt; cat Concatenate and print files Base&amp;gt; shutdown Shutdown Arthas server and exit the console Base&amp;gt; quit 退出 Base&amp;gt; grep 管道过滤 Sys&amp;gt; sysprop Display, and change the system properties.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/FAQ/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/FAQ/</guid>
-      <description> 常见问题 [ERROR] Target process 80696 is not the process using port 3658, you will connect to an unexpected process. [ERROR] 1. Try to restart arthas-boot, select process 62498, shutdown it first. [ERROR] 2. Or try to use different telnet port, for example: java -jar arthas-boot.jar --telnet-port 9998 --http-port -1</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Install/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Install/</guid>
-      <description>Install 安装 在 Github 上找到最新的发布包：https://github.com/alibaba/arthas/releases
-$ wget https://github.com/alibaba/arthas/releases/download/arthas-all-3.1.1/arthas-3.1.1-bin.zip $ unzip arthas-3.1.1-bin.zip -d arthas $ cd arthas # 帮助 $ java -jar arthas-boot.jar -h 如何使用 # 进入交互页面 $ java -jar arthas-boot.jar [INFO] arthas-boot version: 3.1.1 [INFO] Process 62498 already using port 3658 [INFO] Process 62498 already using port 8563 [INFO] Found existing java process, please choose one and hit RETURN. * [1]: 62498 xxx Java 进程 xxx [2]: 54006 xxx Java 进程 xxx [3]: 53993 xxx Java 进程 xxx &amp;gt; 选择一个 Java 进程ID，进入交互页面 [INFO] arthas home: /opt/websuite/arthas [INFO] The target process already listen port 3658, skip attach.</description>
-    </item>
     
     <item>
       <title></title>

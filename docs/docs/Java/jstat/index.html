@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jstat | Troubleshooting</title>
+
+
+<link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+
+
+
+
+<link rel="icon" href="/Troubleshooting/favicon.png" type="image/x-icon">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://hello-world-example.github.io/Troubleshooting/">Troubleshooting</a>
+</h2>
+
+
+
+
+
+
+    
+  
+  
+  
+
+  <style>
+  nav ul a[href$="\2fTroubleshooting\2f docs\2fJava\2fjstat\2f "] {
+      color: #004ed0;
+  }
+  </style>
+
+<ul>
+<li><strong>Arthas</strong>
+
+<ul>
+<li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
+</ul></li>
+<li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
+
+<ul>
+<li><a href="/Troubleshooting/docs/Java/jcmd/"><sup>🌈</sup>jcmd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jps/">jps</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstat/">jstat</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstack/">jstack</a></li>
+<li><a href="/Troubleshooting/docs/Java/jmap/">jmap</a></li>
+<li><a href="/Troubleshooting/docs/Java/jhat/">jhat</a></li>
+<li><a href="/Troubleshooting/docs/Java/jinfo/">jinfo</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstatd/">jstatd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jsadebugd/">jsadebugd</a></li>
+</ul></li>
+</ul>
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/Troubleshooting/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Jstat</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="jstat">jstat</h1>
+
+<p>jstat 统计 JVM 信息，<strong>打印 GC 信息</strong></p>
+
+<h2 id="options">options</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-help       显示帮助信息
+-options    支持的统计项</code></pre></div>
+<p>这里使用<code>-options</code> 输出如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jstat -options
+
+-class
+-compiler
+-gc
+-gccapacity
+-gccause
+-gcnew
+-gcnewcapacity
+-gcold
+-gcoldcapacity
+-gcpermcapacity
+-gcutil
+-printcompilation</code></pre></div>
+<h2 id="options-含义">options 含义</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th>含义</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">gc</td>
+<td>用于查看JVM中堆的垃圾收集情况的统计</td>
+</tr>
+
+<tr>
+<td align="center">gcutil</td>
+<td>用于查看新生代、老生代及持代垃圾收集的情况</td>
+</tr>
+
+<tr>
+<td align="center">class</td>
+<td>用于查看类加载情况的统计</td>
+</tr>
+
+<tr>
+<td align="center">compiler</td>
+<td>用于查看HotSpot中即时编译器编译情况的统计</td>
+</tr>
+
+<tr>
+<td align="center">gccapacity</td>
+<td>用于查看新生代、老生代及持久代的存储容量情况</td>
+</tr>
+
+<tr>
+<td align="center">gccause</td>
+<td>用于查看垃圾收集的统计情况（这个和-gcutil选项一样），如果有发生垃圾收集，它还会显示最后一次及当前正在发生垃圾收集的原因。</td>
+</tr>
+
+<tr>
+<td align="center">gcnew</td>
+<td>用于查看新生代垃圾收集的情况</td>
+</tr>
+
+<tr>
+<td align="center">gcnewcapacity</td>
+<td>用于查看新生代的存储容量情况</td>
+</tr>
+
+<tr>
+<td align="center">gcold</td>
+<td>用于查看老生代及持久代发生GC的情况</td>
+</tr>
+
+<tr>
+<td align="center">gcoldcapacity</td>
+<td>用于查看老生代的容量</td>
+</tr>
+
+<tr>
+<td align="center">gcpermcapacity</td>
+<td>用于查看持久代的容量</td>
+</tr>
+
+<tr>
+<td align="center">printcompilation</td>
+<td>HotSpot编译方法的统计</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="参数">参数</h2>
+
+<p>格式 ： <code>jstat -&lt;option&gt; [-t] [-h&lt;lines&gt;] &lt;vmid&gt; [&lt;interval&gt; [&lt;count&gt;]]</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&lt;interval&gt;          每隔多长时间统计一次，单位支持 ms 和 s
+&lt;count&gt;             统计的次数
+-t                  每次会输出目标JVM启动开始到现在的时间戳
+-h&lt;lines&gt;           没隔多少次输出一下统计表头</code></pre></div>
+<h2 id="例子">例子</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jstat -gc -t -h <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">20901</span> <span style="color:#ae81ff">500</span> <span style="color:#ae81ff">10</span>
+
+Timestamp        S0C    S1C    S0U    S1U      EC       EU        OC         OU       PC     PU    YGC     YGCT    FGC    FGCT     GCT   
+         <span style="color:#ae81ff">1998</span>.6 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">8038</span>.9  <span style="color:#ae81ff">0</span>.0   <span style="color:#ae81ff">66048</span>.0  <span style="color:#ae81ff">45065</span>.2   <span style="color:#ae81ff">174592</span>.0    <span style="color:#ae81ff">627</span>.8    <span style="color:#ae81ff">21504</span>.0 <span style="color:#ae81ff">17411</span>.2      <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">0</span>.039   <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>.029    <span style="color:#ae81ff">0</span>.069
+         <span style="color:#ae81ff">1999</span>.2 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">8038</span>.9  <span style="color:#ae81ff">0</span>.0   <span style="color:#ae81ff">66048</span>.0  <span style="color:#ae81ff">45065</span>.2   <span style="color:#ae81ff">174592</span>.0    <span style="color:#ae81ff">627</span>.8    <span style="color:#ae81ff">21504</span>.0 <span style="color:#ae81ff">17411</span>.2      <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">0</span>.039   <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>.029    <span style="color:#ae81ff">0</span>.069
+         <span style="color:#ae81ff">1999</span>.6 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">8038</span>.9  <span style="color:#ae81ff">0</span>.0   <span style="color:#ae81ff">66048</span>.0  <span style="color:#ae81ff">45065</span>.2   <span style="color:#ae81ff">174592</span>.0    <span style="color:#ae81ff">627</span>.8    <span style="color:#ae81ff">21504</span>.0 <span style="color:#ae81ff">17411</span>.2      <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">0</span>.039   <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>.029    <span style="color:#ae81ff">0</span>.069
+         <span style="color:#ae81ff">2000</span>.2 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">8038</span>.9  <span style="color:#ae81ff">0</span>.0   <span style="color:#ae81ff">66048</span>.0  <span style="color:#ae81ff">45065</span>.2   <span style="color:#ae81ff">174592</span>.0    <span style="color:#ae81ff">627</span>.8    <span style="color:#ae81ff">21504</span>.0 <span style="color:#ae81ff">17411</span>.2      <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">0</span>.039   <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>.029    <span style="color:#ae81ff">0</span>.069
+Timestamp        S0C    S1C    S0U    S1U      EC       EU        OC         OU       PC     PU    YGC     YGCT    FGC    FGCT     GCT   
+         <span style="color:#ae81ff">2000</span>.7 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">8038</span>.9  <span style="color:#ae81ff">0</span>.0   <span style="color:#ae81ff">66048</span>.0  <span style="color:#ae81ff">45065</span>.2   <span style="color:#ae81ff">174592</span>.0    <span style="color:#ae81ff">627</span>.8    <span style="color:#ae81ff">21504</span>.0 <span style="color:#ae81ff">17411</span>.2      <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">0</span>.039   <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>.029    <span style="color:#ae81ff">0</span>.069
+         <span style="color:#ae81ff">2001</span>.2 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">8038</span>.9  <span style="color:#ae81ff">0</span>.0   <span style="color:#ae81ff">66048</span>.0  <span style="color:#ae81ff">45065</span>.2   <span style="color:#ae81ff">174592</span>.0    <span style="color:#ae81ff">627</span>.8    <span style="color:#ae81ff">21504</span>.0 <span style="color:#ae81ff">17411</span>.2      <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">0</span>.039   <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>.029    <span style="color:#ae81ff">0</span>.069
+         <span style="color:#ae81ff">2001</span>.7 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">8038</span>.9  <span style="color:#ae81ff">0</span>.0   <span style="color:#ae81ff">66048</span>.0  <span style="color:#ae81ff">45065</span>.2   <span style="color:#ae81ff">174592</span>.0    <span style="color:#ae81ff">627</span>.8    <span style="color:#ae81ff">21504</span>.0 <span style="color:#ae81ff">17411</span>.2      <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">0</span>.039   <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>.029    <span style="color:#ae81ff">0</span>.069
+         <span style="color:#ae81ff">2002</span>.2 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">8038</span>.9  <span style="color:#ae81ff">0</span>.0   <span style="color:#ae81ff">66048</span>.0  <span style="color:#ae81ff">45065</span>.2   <span style="color:#ae81ff">174592</span>.0    <span style="color:#ae81ff">627</span>.8    <span style="color:#ae81ff">21504</span>.0 <span style="color:#ae81ff">17411</span>.2      <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">0</span>.039   <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>.029    <span style="color:#ae81ff">0</span>.069
+Timestamp        S0C    S1C    S0U    S1U      EC       EU        OC         OU       PC     PU    YGC     YGCT    FGC    FGCT     GCT   
+         <span style="color:#ae81ff">2002</span>.7 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">8038</span>.9  <span style="color:#ae81ff">0</span>.0   <span style="color:#ae81ff">66048</span>.0  <span style="color:#ae81ff">45065</span>.2   <span style="color:#ae81ff">174592</span>.0    <span style="color:#ae81ff">627</span>.8    <span style="color:#ae81ff">21504</span>.0 <span style="color:#ae81ff">17411</span>.2      <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">0</span>.039   <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>.029    <span style="color:#ae81ff">0</span>.069
+         <span style="color:#ae81ff">2003</span>.2 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">10752</span>.0 <span style="color:#ae81ff">8038</span>.9  <span style="color:#ae81ff">0</span>.0   <span style="color:#ae81ff">66048</span>.0  <span style="color:#ae81ff">45065</span>.2   <span style="color:#ae81ff">174592</span>.0    <span style="color:#ae81ff">627</span>.8    <span style="color:#ae81ff">21504</span>.0 <span style="color:#ae81ff">17411</span>.2      <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">0</span>.039   <span style="color:#ae81ff">1</span>      <span style="color:#ae81ff">0</span>.029    <span style="color:#ae81ff">0</span>.069</code></pre></div>
+<p>如果要看懂以上每一列的含义，其涉及到 JVM 分代GC的问题，这里给出一个图供参考，应该来自《深入理解Java虚拟机》这本书。</p>
+
+<p><img src="//pic01.kail.xyz/images/java-self-monitor-command/1.png" alt="JVM内存分布" /></p>
+
+<p>以下给出简单解释：</p>
+
+<pre><code>堆内存 = 年轻代 + 年老代 + 永久代  
+年轻代 = Eden区 + 两个Survivor区（From和To）  
+
+S0C、S1C、S0U、S1U   Survivor 0/1区容量（Capacity）和使用量（Used）  
+EC、EU：             Eden 区容量和使用量  
+OC、OU：             年老代容量和使用量  
+PC、PU：             永久代容量和使用量   
+YGC、YGT：           年轻代GC次数和GC耗时  
+FGC、FGCT：          Full GC次数和Full GC耗时  
+GCT：                GC总耗时
+</code></pre>
+
+<h2 id="read-more">Read More</h2>
+
+<ul>
+<li><a href="http://www.jianshu.com/p/778dd3848196">Java垃圾回收机制</a></li>
+<li><a href="http://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/toc.html">HotSpot Virtual Machine Garbage Collection Tuning Guide</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jstat.html#output_options">官网文档  jstat</a></li>
+<li><a href="http://blog.csdn.net/maosijunzi/article/details/46049117"><strong>java高分局之jstat命令使用</strong></a></li>
+<li><a href="http://blog.csdn.net/fenglibing/article/details/6411951">jstat命令(Java Virtual Machine Statistics Monitoring Tool)</a></li>
+</ul>
+</article>
+
+      
+<div class="book-footer justify-end">
+  
+  
+  <div>
+    <a href="https://github.com/hello-world-example/Troubleshooting/edit/master/HuGo/content/docs/Java/jstat.md" target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/edit.svg" alt="Edit" /> Edit this page
+    </a>
+  </div>
+  
+</div>
+
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#jstat">jstat</a>
+<ul>
+<li><a href="#options">options</a></li>
+<li><a href="#options-含义">options 含义</a></li>
+<li><a href="#参数">参数</a></li>
+<li><a href="#例子">例子</a></li>
+<li><a href="#read-more">Read More</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+  
+  
+  
+</body>
+
+</html>
