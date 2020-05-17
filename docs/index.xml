@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ReadMe on Troubleshooting</title>
@@ -15,7 +15,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Troubleshooting/_sidebar/</guid>
-      <description> Arthas  安装 命令列表 Advice 案例 常见问题  JDK 内建  🌈jcmd jps jstat jstack jmap jhat jinfo jstatd jsadebugd   </description>
+      <description> Arthas  安装 命令列表 Advice 案例 常见问题   JDK 内建  🌈jcmd jps jstat jstack jmap jhat jinfo jstatd jsadebugd   Jsonde  </description>
     </item>
     
     <item>
@@ -34,7 +34,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/</guid>
-      <description>使用案例 诊断 Docker 里的 Java 进程 $ docker exec -it ${containerId} /bin/bash \  -c &amp;#34;wget https://alibaba.github.io/arthas/arthas-boot.jar &amp;amp;&amp;amp; java -jar arthas-boot.</description>
+      <description>使用案例 诊断 Docker 里的 Java 进程 $ docker exec -it ${containerId} /bin/bash \  -c &amp;#34;wget https://alibaba.github.io/arthas/arthas-boot.jar &amp;amp;&amp;amp; java -jar arthas-boot.jar&amp;#34; </description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Commands/</guid>
       <description>命令列表  启动示例程序
-​ wget https://alibaba.github.io/arthas/arthas-demo.jar ​ java -jar arthas-demo.jar
+​	wget https://alibaba.github.io/arthas/arthas-demo.jar ​	java -jar arthas-demo.jar
  查看帮助 $ help 查看支持的命令
 NAME DESCRIPTION Base&amp;gt; help Display Arthas Help Base&amp;gt; version Display Arthas version Base&amp;gt; cls Clear the screen Base&amp;gt; history Display command history Base&amp;gt; keymap Display all the available keymap for the specified connection. Base&amp;gt; session Display current session information Base&amp;gt; pwd Return working directory name Base&amp;gt; cat Concatenate and print files Base&amp;gt; shutdown Shutdown Arthas server and exit the console Base&amp;gt; quit 退出 Base&amp;gt; grep 管道过滤 Sys&amp;gt; sysprop Display, and change the system properties.</description>
     </item>
@@ -55,7 +55,7 @@ NAME DESCRIPTION Base&amp;gt; help Display Arthas Help Base&amp;gt; version Disp
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/FAQ/</guid>
-      <description> 常见问题 [ERROR] Target process 80696 is not the process using port 3658, you will connect to an unexpected process. [ERROR] 1. Try to restart arthas-boot, select process 62498, shutdown it first. [ERROR] 2. Or try to use different telnet port, for example: java -jar arthas-boot.jar --telnet-port 9998 --http-port -1</description>
+      <description>常见问题 [ERROR] Target process 80696 is not the process using port 3658, you will connect to an unexpected process. [ERROR] 1. Try to restart arthas-boot, select process 62498, shutdown it first. [ERROR] 2. Or try to use different telnet port, for example: java -jar arthas-boot.jar --telnet-port 9998 --http-port -1 </description>
     </item>
     
     <item>
@@ -87,7 +87,7 @@ $ jcmd 43976 help 43976: The following commands are available: VM.native_memory 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/Java/jhat/</guid>
-      <description> jhat jhat` 可以对 dump 出来的堆信息进行处理，以 html 页面的形式展示出来。
+      <description>jhat jhat` 可以对 dump 出来的堆信息进行处理，以 html 页面的形式展示出来。
 执行 jhat /tmp/123.hprof即可，默认端口是 7000，访问 http://localhost:7000 即可查看结果。
 通过 -port 指定端口。
 有时候文件过大的时候可能会出错，可以通过-J-Xmx1024m修改JVM最大可用内存。
@@ -153,7 +153,8 @@ options -l 显示main方法包名 或者 应用jar包的全路径 -m 显示main�
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/Java/jsadebugd/</guid>
       <description>jsadebugd jsadebugd依附到一个Java进程，开启一个rmi服务，担当一个调试服务器的作用，可供 jinfo、jmap、jstack 命令拉取远程机器上的信息。
 开启服务 $ jsadebugd &amp;lt;pid&amp;gt; Attaching to process ID &amp;lt;pid&amp;gt; and starting RMI services, please wait... Debugger attached and RMI services started. 开启之后可以通过 Ctrl + C 关闭停止
-远程连接 $ jinfo localhost Attaching to remote server localhost, please wait... Debugger attached successfully. Server compiler detected. JVM version is 24.75-b04 Java System Properties: idea.version = =2016.3.3 java.runtime.name = Java(TM) SE Runtime Environment java.vm.version = 24.75-b04 ...... jmap、jstack 类似。</description>
+远程连接 $ jinfo localhost Attaching to remote server localhost, please wait... Debugger attached successfully. Server compiler detected. JVM version is 24.75-b04 Java System Properties: idea.version = =2016.3.3 java.runtime.name = Java(TM) SE Runtime Environment java.vm.version = 24.75-b04 ...... jmap、jstack 类似。
+参考  jsadebugd官方文档</description>
     </item>
     
     <item>
@@ -162,9 +163,9 @@ options -l 显示main方法包名 或者 应用jar包的全路径 -m 显示main�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/Java/jstack/</guid>
-      <description> jstack jstack 可以打印出 线程的状态、调用栈、锁资源 等信息。 可以用于分析死锁、性能瓶颈等问题。用法相对简单但非常有用。
-参数 -F 当 jstack [-l] &amp;lt;pid&amp;gt; 无相应的时候可以使用该参数强制dump -l 打印关于锁的附加信息,例如属于java.util.concurrent的ownable synchronizers列表 -m 打印 java 和 native 代码的所有栈信息 -h|-help 打印帮助信息 Read More  jstack 官方文档
- JAVA线程dump的分析 &amp;mdash; jstack pid
+      <description>jstack jstack 可以打印出 线程的状态、调用栈、锁资源 等信息。 可以用于分析死锁、性能瓶颈等问题。用法相对简单但非常有用。
+参数 -F 当 jstack [-l] &amp;lt;pid&amp;gt; 无相应的时候可以使用该参数强制dump -l 打印关于锁的附加信息,例如属于java.util.concurrent的ownable synchronizers列表 -m 打印 java 和 native 代码的所有栈信息 -h|-help 打印帮助信息 Read More   jstack 官方文档
+  JAVA线程dump的分析 &amp;mdash; jstack pid
   </description>
     </item>
     
@@ -187,13 +188,13 @@ $ jstat -options -class -compiler -gc -gccapacity -gccause -gcnew -gcnewcapacity
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/Java/jstatd/</guid>
       <description>jstatd jstatd 会开启一个 RMI 服务，供其他机器进行远程监控
 参数 -nr 如果RMI注册中心没有找到，不会创建一个内部的RMI注册中心 -p RMI端口，默认为1099 -n RMI名称， 默认是 JStatRemoteHost -J 传递JVM参数 例子 新建文件 jstatd.all.policy内容如下，给jstatd授予所有权限
-grant codebase &amp;quot;file:${java.home}/../lib/tools.jar&amp;quot; { permission java.security.AllPermission; };  开启 jstatd 守护进程，开启后会有一个光标一直在闪，Ctrl + C 退出
+grant codebase &amp;quot;file:${java.home}/../lib/tools.jar&amp;quot; { permission java.security.AllPermission; }; 开启 jstatd 守护进程，开启后会有一个光标一直在闪，Ctrl + C 退出
 jstatd -J-Djava.security.policy=jstatd.all.policy 绑定端口和设置名称
 jstatd -J-Djava.security.policy=jstatd.all.policy -p 6789 -n rmiJstatsName 使用 jps 远程监控 假设 jstatd 的所在机器是 192.168.4.35
 jps rmi://192.168.4.35:6789/rmiJstatsName 输出结果
 11452 RemoteMavenServer 4440 Jstatd 10016 Launcher  使用 jstat 远程监控
 jstat -gcutil 11452@192.168.4.35:6789/rmiJstatsName 500 10 打开日志输出
-jstatd -J-Djava.</description>
+jstatd -J-Djava.security.policy=jstatd.all.policy -J-Djava.rmi.server.logCalls=true Read More  官网 jstatd jstatd 命令(Java Statistics Monitoring Daemon)  Default Policy Implementation and Policy File Syntax  </description>
     </item>
     
   </channel>

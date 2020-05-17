@@ -7,7 +7,7 @@
 <title>F a Q | Troubleshooting</title>
 
 
-<link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+<link rel="stylesheet" href="/Troubleshooting/book.min.a2277534155c5e81ce2c8ca6a4cd295525f25c75788a2e4e72c3310491c743b1.css">
 
 
 
@@ -51,18 +51,17 @@ https://github.com/alex-shpak/hugo-book
 
 <ul>
 <li><strong>Arthas</strong>
-
 <ul>
 <li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
-
 <ul>
-<li><a href="/Troubleshooting/docs/Java/jcmd/"><sup>🌈</sup>jcmd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jcmd/"><!-- raw HTML omitted -->🌈<!-- raw HTML omitted -->jcmd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jps/">jps</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstat/">jstat</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstack/">jstack</a></li>
@@ -71,7 +70,9 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/Troubleshooting/docs/Java/jinfo/">jinfo</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstatd/">jstatd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jsadebugd/">jsadebugd</a></li>
-</ul></li>
+</ul>
+</li>
+<li><a href="/Troubleshooting/docs/Jsonde/"><strong>Jsonde</strong></a></li>
 </ul>
 
 
@@ -104,12 +105,11 @@ https://github.com/alex-shpak/hugo-book
 </header>
 
       
-<article class="markdown">
-
-<h1 id="常见问题">常见问题</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> Target process <span style="color:#ae81ff">80696</span> is not the process using port <span style="color:#ae81ff">3658</span>, you will connect to an unexpected process.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> <span style="color:#ae81ff">1</span>. Try to restart arthas-boot, <span style="color:#66d9ef">select</span> process <span style="color:#ae81ff">62498</span>, shutdown it first.
-<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> <span style="color:#ae81ff">2</span>. Or try to use different telnet port, <span style="color:#66d9ef">for</span> example: java -jar arthas-boot.jar --telnet-port <span style="color:#ae81ff">9998</span> --http-port -1</code></pre></div></article>
+<article class="markdown"><h1 id="常见问题">常见问题</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> Target process <span style="color:#ae81ff">80696</span> is not the process using port 3658, you will connect to an unexpected process.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> 1. Try to restart arthas-boot, <span style="color:#66d9ef">select</span> process 62498, shutdown it first.
+<span style="color:#f92672">[</span>ERROR<span style="color:#f92672">]</span> 2. Or try to use different telnet port, <span style="color:#66d9ef">for</span> example: java -jar arthas-boot.jar --telnet-port <span style="color:#ae81ff">9998</span> --http-port -1
+</code></pre></div></article>
 
       
 <div class="book-footer justify-between">
@@ -138,11 +138,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   <aside class="book-toc level-3 fixed">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#常见问题">常见问题</a></li>
-</ul>
-</nav>
+    <nav id="TableOfContents"></nav>
   </aside>
 
 

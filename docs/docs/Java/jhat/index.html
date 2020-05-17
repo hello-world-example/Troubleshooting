@@ -7,7 +7,7 @@
 <title>Jhat | Troubleshooting</title>
 
 
-<link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+<link rel="stylesheet" href="/Troubleshooting/book.min.a2277534155c5e81ce2c8ca6a4cd295525f25c75788a2e4e72c3310491c743b1.css">
 
 
 
@@ -51,18 +51,17 @@ https://github.com/alex-shpak/hugo-book
 
 <ul>
 <li><strong>Arthas</strong>
-
 <ul>
 <li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
-
 <ul>
-<li><a href="/Troubleshooting/docs/Java/jcmd/"><sup>🌈</sup>jcmd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jcmd/"><!-- raw HTML omitted -->🌈<!-- raw HTML omitted -->jcmd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jps/">jps</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstat/">jstat</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstack/">jstack</a></li>
@@ -71,7 +70,9 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/Troubleshooting/docs/Java/jinfo/">jinfo</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstatd/">jstatd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jsadebugd/">jsadebugd</a></li>
-</ul></li>
+</ul>
+</li>
+<li><a href="/Troubleshooting/docs/Jsonde/"><strong>Jsonde</strong></a></li>
 </ul>
 
 
@@ -104,31 +105,28 @@ https://github.com/alex-shpak/hugo-book
 </header>
 
       
-<article class="markdown">
-
-<h1 id="jhat">jhat</h1>
-
+<article class="markdown"><h1 id="jhat">jhat</h1>
 <p>jhat` 可以对 dump 出来的堆信息进行处理，以 html 页面的形式展示出来。</p>
-
 <p>执行 <code>jhat /tmp/123.hprof</code>即可，默认端口是 <code>7000</code>，访问 <code>http://localhost:7000</code> 即可查看结果。</p>
-
 <p>通过 <code>-port</code> 指定端口。</p>
-
 <p>有时候文件过大的时候可能会出错，可以通过<code>-J-Xmx1024m</code>修改JVM最大可用内存。</p>
-
 <p>其他参数详请查看官方文档。</p>
-
 <h2 id="read-more">Read More</h2>
-
 <blockquote>
 <p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jhat.html">jhat</a>官方文档</p>
-
 <p><a href="http://blog.csdn.net/gtuu0123/article/details/6039592"> jhat中的OQL（对象查询语言</a></p>
 </blockquote>
 </article>
 
       
-<div class="book-footer justify-end">
+<div class="book-footer justify-between">
+  
+  <div>
+    
+    <a href="https://github.com/hello-world-example/Troubleshooting/commit/740fd6133073e397bd38051cadbc968747b77e30" title='Last modified Feb 21, 2020 by 杨凯彬' target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/calendar.svg" alt="Changed" /> Feb 21, 2020
+    </a>
+  </div>
   
   
   <div>
@@ -148,12 +146,9 @@ https://github.com/alex-shpak/hugo-book
 
   <aside class="book-toc level-3 fixed">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#jhat">jhat</a>
-<ul>
-<li><a href="#read-more">Read More</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
 </nav>
   </aside>
 

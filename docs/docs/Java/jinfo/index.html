@@ -7,7 +7,7 @@
 <title>Jinfo | Troubleshooting</title>
 
 
-<link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+<link rel="stylesheet" href="/Troubleshooting/book.min.a2277534155c5e81ce2c8ca6a4cd295525f25c75788a2e4e72c3310491c743b1.css">
 
 
 
@@ -51,18 +51,17 @@ https://github.com/alex-shpak/hugo-book
 
 <ul>
 <li><strong>Arthas</strong>
-
 <ul>
 <li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
-
 <ul>
-<li><a href="/Troubleshooting/docs/Java/jcmd/"><sup>🌈</sup>jcmd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jcmd/"><!-- raw HTML omitted -->🌈<!-- raw HTML omitted -->jcmd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jps/">jps</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstat/">jstat</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstack/">jstack</a></li>
@@ -71,7 +70,9 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/Troubleshooting/docs/Java/jinfo/">jinfo</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstatd/">jstatd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jsadebugd/">jsadebugd</a></li>
-</ul></li>
+</ul>
+</li>
+<li><a href="/Troubleshooting/docs/Jsonde/"><strong>Jsonde</strong></a></li>
 </ul>
 
 
@@ -104,14 +105,9 @@ https://github.com/alex-shpak/hugo-book
 </header>
 
       
-<article class="markdown">
-
-<h1 id="jinfo">jinfo</h1>
-
+<article class="markdown"><h1 id="jinfo">jinfo</h1>
 <p><code>jinfo</code> 可以<strong>打印</strong>或者<strong>修改</strong> Java进程 的配置信息。配置信息包括 Java 系统属性 和 JVM flags（ Java system properties and Java Virtual Machine (JVM) command-line flags）。</p>
-
 <h2 id="查看帮助">查看帮助</h2>
-
 <p><code>jinfo</code>、<code>jinfo -h</code>、<code>jinfo -help</code> 三种方法都可以打印出帮助信息。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jinfo
 Usage:
@@ -129,31 +125,34 @@ where &lt;option&gt; is one of:
     -flags               to print VM flags
     -sysprops            to print Java system properties
     &lt;no option&gt;          to print both of the above
-    -h | -help           to print this help message</code></pre></div>
-<h2 id="系统配置">系统配置</h2>
+    -h | -help           to print this help message
 
-<p><code>jinfo &lt;pid&gt;</code></p>
-
+</code></pre></div><h2 id="系统配置">系统配置</h2>
+<p><code>jinfo &lt;pid&gt; </code></p>
 <p>或者指定属性配置</p>
-
 <p><code>jinfo &lt;pid&gt; | grep java.version</code></p>
-
 <h2 id="command-line-flags">command-line flags</h2>
-
 <h3 id="获取"><strong>获取</strong></h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jcmd <span style="color:#ae81ff">56227</span> VM.flags 
-<span style="color:#ae81ff">56227</span>:
--XX:InitialHeapSize<span style="color:#f92672">=</span><span style="color:#ae81ff">268435456</span> -XX:MaxHeapSize<span style="color:#f92672">=</span><span style="color:#ae81ff">805306368</span> -XX:+UseCompressedOops -XX:+UseParallelGC </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jinfo -flag MaxHeapSize <span style="color:#ae81ff">56227</span>
--XX:MaxHeapSize<span style="color:#f92672">=</span><span style="color:#ae81ff">805306368</span></code></pre></div>
-<h2 id="read-more">Read More</h2>
-
+56227:
+-XX:InitialHeapSize<span style="color:#f92672">=</span><span style="color:#ae81ff">268435456</span> -XX:MaxHeapSize<span style="color:#f92672">=</span><span style="color:#ae81ff">805306368</span> -XX:+UseCompressedOops -XX:+UseParallelGC 
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jinfo -flag MaxHeapSize <span style="color:#ae81ff">56227</span>
+-XX:MaxHeapSize<span style="color:#f92672">=</span><span style="color:#ae81ff">805306368</span>
+</code></pre></div><h2 id="read-more">Read More</h2>
 <blockquote>
 <p>官方文档 <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jinfo.html">jinfo</a></p>
 </blockquote>
 </article>
 
       
-<div class="book-footer justify-end">
+<div class="book-footer justify-between">
+  
+  <div>
+    
+    <a href="https://github.com/hello-world-example/Troubleshooting/commit/740fd6133073e397bd38051cadbc968747b77e30" title='Last modified Feb 21, 2020 by 杨凯彬' target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/calendar.svg" alt="Changed" /> Feb 21, 2020
+    </a>
+  </div>
   
   
   <div>
@@ -173,18 +172,16 @@ where &lt;option&gt; is one of:
 
   <aside class="book-toc level-3 fixed">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#jinfo">jinfo</a>
-<ul>
-<li><a href="#查看帮助">查看帮助</a></li>
-<li><a href="#系统配置">系统配置</a></li>
-<li><a href="#command-line-flags">command-line flags</a>
-<ul>
-<li><a href="#获取"><strong>获取</strong></a></li>
-</ul></li>
-<li><a href="#read-more">Read More</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#查看帮助">查看帮助</a></li>
+    <li><a href="#系统配置">系统配置</a></li>
+    <li><a href="#command-line-flags">command-line flags</a>
+      <ul>
+        <li><a href="#获取"><strong>获取</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
 </nav>
   </aside>
 

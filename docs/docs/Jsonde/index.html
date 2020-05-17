@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jsonde | Troubleshooting</title>
+
+
+<link rel="stylesheet" href="/Troubleshooting/book.min.a2277534155c5e81ce2c8ca6a4cd295525f25c75788a2e4e72c3310491c743b1.css">
+
+
+
+
+<link rel="icon" href="/Troubleshooting/favicon.png" type="image/x-icon">
+
+
+<link rel="alternate" type="application/rss+xml" href="https://hello-world-example.github.io/Troubleshooting/docs/Jsonde/index.xml" title="Troubleshooting" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://hello-world-example.github.io/Troubleshooting/">Troubleshooting</a>
+</h2>
+
+
+
+
+
+
+    
+  
+  
+  
+
+  <style>
+  nav ul a[href$="\2fTroubleshooting\2f docs\2fJsonde\2f "] {
+      color: #004ed0;
+  }
+  </style>
+
+<ul>
+<li><strong>Arthas</strong>
+<ul>
+<li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
+</ul>
+</li>
+<li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
+<ul>
+<li><a href="/Troubleshooting/docs/Java/jcmd/"><!-- raw HTML omitted -->🌈<!-- raw HTML omitted -->jcmd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jps/">jps</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstat/">jstat</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstack/">jstack</a></li>
+<li><a href="/Troubleshooting/docs/Java/jmap/">jmap</a></li>
+<li><a href="/Troubleshooting/docs/Java/jhat/">jhat</a></li>
+<li><a href="/Troubleshooting/docs/Java/jinfo/">jinfo</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstatd/">jstatd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jsadebugd/">jsadebugd</a></li>
+</ul>
+</li>
+<li><a href="/Troubleshooting/docs/Jsonde/"><strong>Jsonde</strong></a></li>
+</ul>
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/Troubleshooting/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Jsonde</strong>
+</header>
+
+      
+<article class="markdown"><h1 id="jsonde-简介">jSonde 简介</h1>
+<p><strong>jSonde</strong> 是 <strong>jTracert</strong> 的变种升级，拥有更强的统计分析功能，能够帮助用户在Java程序运行的过程中动态的生成 UML序列图、调用关系、调用耗时 等功能的 <strong>客户端工具</strong>。</p>
+<h2 id="主要功能">主要功能</h2>
+<ul>
+<li><strong>Sequence Diagram</strong>：方法调用关系 UML序列图</li>
+<li>Profiler
+<ul>
+<li><strong>Method Call</strong>： 方法调用关系 和 耗时</li>
+<li><strong>Heap</strong>： 类的实例个数 和 总大小</li>
+<li>Memory Telemetry： 内存监控</li>
+<li>Class Telemetry： Class 数监控</li>
+</ul>
+</li>
+<li>Reports
+<ul>
+<li>Top Methods Throwing Exception： 抛出异常最多的前几个方法</li>
+<li><strong>Top Code Sources By Execution Time</strong>： 耗时最长的前几个类库</li>
+<li><strong>Dependencies</strong> ： jar 依赖关系</li>
+</ul>
+</li>
+</ul>
+<h2 id="获取资源">获取资源</h2>
+<ul>
+<li>Github：<a href="https://github.com/bedrin/jsonde">bedrin/jsonde</a></li>
+<li>GitPage: <a href="https://bedrin.github.io/jsonde/">https://bedrin.github.io/jsonde/</a></li>
+<li>下载 ： <a href="https://github.com/bedrin/jsonde/releases/download/1.1.0/jsonde-1.1.0-installer.jar">jsonde-1.1.0-installer.jar</a></li>
+</ul>
+<h2 id="安装">安装</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">java <span style="color:#f92672">-</span>jar jsonde<span style="color:#f92672">-</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">-</span>installer<span style="color:#f92672">.</span><span style="color:#a6e22e">jar</span>
+</code></pre></div><h2 id="添加-jsonde-agent">添加 jsonde agent</h2>
+<p>被监控程序 新增 JVM 参数</p>
+<pre><code>-javaagent:%JSONDE_HOME%/lib/jsonde.agent-1.1.0.jar=60001
+</code></pre><ul>
+<li><code>JSONDE_HOME</code> 是 jsonde 的安装目录</li>
+<li><code>60001</code> 是开启的监控端口</li>
+<li><strong>启动被监控应用后控制台会输出 <code>jSonde agent started </code> 并夯住，直到 GUI 程序链接到设定的端口才会开始启动</strong></li>
+</ul>
+<h2 id="启动-gui-程序">启动 GUI 程序</h2>
+<ul>
+<li><code>java -jar %JSONDE_HOME%/jsonde.jar</code> 启动，可以通过其提供的 可执行文件 或 脚本启动</li>
+<li><code>File &gt; New Project</code> 新建工程，输入工程名 和 需要建空间的包 如 <code>xyz.kail.*</code></li>
+<li><code>Connect</code> 链接，<em>这时候被监控程序正式开始启动</em>。</li>
+</ul>
+<h2 id="小结">小结</h2>
+<blockquote>
+<p>jSonde allows you to generate sequence diagrams directly from your application runtime! This gives you a lot of advantages:</p>
+<ul>
+<li>Understand the code created by your colleagues/partners in a short time</li>
+<li>Rapidly generate documentation for your partners or users.</li>
+<li>Easily investigate what&rsquo;s happening in large Java applications</li>
+<li>Excellent companion for a common debugger</li>
+</ul>
+</blockquote>
+<p>jSonde 声称有以下好处:</p>
+<ul>
+<li>快速了解同事写的代码（： 感觉这个程序使用起来相当卡，尤其是调用关系复杂，调用比较深的情况下）</li>
+<li>为同事或者用户快速生成文档（： 可以生成 关系图，貌似不能生成文档）</li>
+<li>轻松查看大型Java应用程序中发生什么（：耗时、调用关系、依赖关系）</li>
+<li>是一个调试伴侣</li>
+</ul>
+<p>个人感觉</p>
+<ul>
+<li>程序启动后会夯住，这个特性可以用来<strong>查看调试启动耗时</strong></li>
+<li>调用指定接口或者方法的时候才会生成关系，可以用来**熟悉框架的调用的关系<em>和流程</em></li>
+<li>其他监控功能不如 JDK 自带的一些调优工具好用</li>
+<li>该工具只适合开发调试阶段使用</li>
+</ul>
+<h2 id="read-more">Read More</h2>
+<ul>
+<li><a href="https://www.xuebuyuan.com/zh-tw/861640.html">jSonde 介绍</a></li>
+</ul>
+</article>
+
+      
+<div class="book-footer justify-end">
+  
+  
+  <div>
+    <a href="https://github.com/hello-world-example/Troubleshooting/edit/master/HuGo/content/docs/Jsonde/_index.md" target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/edit.svg" alt="Edit" /> Edit this page
+    </a>
+  </div>
+  
+</div>
+
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#主要功能">主要功能</a></li>
+    <li><a href="#获取资源">获取资源</a></li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#添加-jsonde-agent">添加 jsonde agent</a></li>
+    <li><a href="#启动-gui-程序">启动 GUI 程序</a></li>
+    <li><a href="#小结">小结</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+  
+  
+  
+</body>
+
+</html>

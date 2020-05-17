@@ -7,7 +7,7 @@
 <title>Commands | Troubleshooting</title>
 
 
-<link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+<link rel="stylesheet" href="/Troubleshooting/book.min.a2277534155c5e81ce2c8ca6a4cd295525f25c75788a2e4e72c3310491c743b1.css">
 
 
 
@@ -51,18 +51,17 @@ https://github.com/alex-shpak/hugo-book
 
 <ul>
 <li><strong>Arthas</strong>
-
 <ul>
 <li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
-
 <ul>
-<li><a href="/Troubleshooting/docs/Java/jcmd/"><sup>🌈</sup>jcmd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jcmd/"><!-- raw HTML omitted -->🌈<!-- raw HTML omitted -->jcmd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jps/">jps</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstat/">jstat</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstack/">jstack</a></li>
@@ -71,7 +70,9 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/Troubleshooting/docs/Java/jinfo/">jinfo</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstatd/">jstatd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jsadebugd/">jsadebugd</a></li>
-</ul></li>
+</ul>
+</li>
+<li><a href="/Troubleshooting/docs/Jsonde/"><strong>Jsonde</strong></a></li>
 </ul>
 
 
@@ -104,21 +105,14 @@ https://github.com/alex-shpak/hugo-book
 </header>
 
       
-<article class="markdown">
-
-<h1 id="命令列表">命令列表</h1>
-
+<article class="markdown"><h1 id="命令列表">命令列表</h1>
 <blockquote>
 <p>启动示例程序</p>
-
-<p>​ wget <a href="https://alibaba.github.io/arthas/arthas-demo.jar">https://alibaba.github.io/arthas/arthas-demo.jar</a>
-​ java -jar arthas-demo.jar</p>
+<p>​	wget <a href="https://alibaba.github.io/arthas/arthas-demo.jar">https://alibaba.github.io/arthas/arthas-demo.jar</a>
+​	java -jar arthas-demo.jar</p>
 </blockquote>
-
 <h2 id="查看帮助">查看帮助</h2>
-
-<h3 id="help">$ help</h3>
-
+<h3 id="-help">$ help</h3>
 <p>查看支持的命令</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">      NAME         DESCRIPTION
 Base&gt;  help         Display Arthas Help
@@ -159,12 +153,12 @@ Debug&gt; tt           Time Tunnel
 Debug&gt; monitor      Monitor method execution statistics, e.g. total/success/failure count...
 
 options      View and change various Arthas options
-reset        Reset all the enhanced classes</code></pre></div>
-<h3 id="查看命令帮助">查看命令帮助</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ help reset
-$ reset -h</code></pre></div>
-<h2 id="基础命令-base">基础命令 Base</h2>
+reset        Reset all the enhanced classes
 
+</code></pre></div><h3 id="查看命令帮助">查看命令帮助</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ help reset
+$ reset -h
+</code></pre></div><h2 id="基础命令-base">基础命令 Base</h2>
 <table>
 <thead>
 <tr>
@@ -173,74 +167,62 @@ $ reset -h</code></pre></div>
 <th></th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>help</td>
 <td>查看帮助</td>
 <td></td>
 </tr>
-
 <tr>
 <td>version</td>
 <td>版本信息</td>
 <td></td>
 </tr>
-
 <tr>
 <td>cls</td>
 <td>清屏</td>
 <td></td>
 </tr>
-
 <tr>
 <td>history</td>
 <td>打印命令历史</td>
 <td></td>
 </tr>
-
 <tr>
 <td>keymap</td>
 <td>支持的快捷键</td>
 <td></td>
 </tr>
-
 <tr>
 <td>session</td>
 <td>查看 Attach 的 Java 进程ID</td>
 <td></td>
 </tr>
-
 <tr>
 <td>pwd</td>
 <td>当前目录</td>
 <td></td>
 </tr>
-
 <tr>
 <td>cat</td>
 <td>查看文件内容</td>
 <td></td>
 </tr>
-
 <tr>
 <td>shutdown</td>
 <td>关闭 Arthas 服务端，所有 Arthas 客户端全部退出，重置所有增强过的类</td>
 <td></td>
 </tr>
-
 <tr>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-
 <tr>
 <td>quit</td>
 <td>退出当前 Arthas 客户端，其他 Arthas 客户端不受影响</td>
 <td></td>
 </tr>
-
 <tr>
 <td>grep</td>
 <td>管道过滤</td>
@@ -248,9 +230,7 @@ $ reset -h</code></pre></div>
 </tr>
 </tbody>
 </table>
-
 <h2 id="系统信息-sys">系统信息 Sys</h2>
-
 <table>
 <thead>
 <tr>
@@ -259,14 +239,12 @@ $ reset -h</code></pre></div>
 <th>原理</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>sysprop</td>
 <td>系统属性 <code>System.getProperties()</code> ，可以 读取和设置，<strong>支持 Tab 自动补全</strong></td>
 <td></td>
 </tr>
-
 <tr>
 <td>sysenv</td>
 <td>环境变量 <code>System.getenv()</code> ，只可读取，<strong>支持 Tab 自动补全</strong></td>
@@ -274,9 +252,7 @@ $ reset -h</code></pre></div>
 </tr>
 </tbody>
 </table>
-
 <h2 id="虚拟机-信息-jvm">虚拟机 信息 JVM</h2>
-
 <table>
 <thead>
 <tr>
@@ -285,37 +261,31 @@ $ reset -h</code></pre></div>
 <th>原理</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><a href="https://alibaba.github.io/arthas/dashboard.html">dashboard</a></td>
 <td>线程、内存、GC、Runtime 信息；<code>dashboard -i1 -n1</code> 只执行一次</td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/jvm.html">jvm</a></td>
-<td>RunTime、ClassLoading、Compilation、操作系统<br>GC（次数、耗时、收集器）、内存（堆内存、非堆内存）<br>线程（当前活跃、守护、曾经最大、启动过的线程次数、死锁线程数）<br>文件描述符（最大可用、当前）</td>
+<td>RunTime、ClassLoading、Compilation、操作系统<!-- raw HTML omitted -->GC（次数、耗时、收集器）、内存（堆内存、非堆内存）<!-- raw HTML omitted -->线程（当前活跃、守护、曾经最大、启动过的线程次数、死锁线程数）<!-- raw HTML omitted -->文件描述符（最大可用、当前）</td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/thread.html">thread [id]</a></td>
-<td><code>thread -b</code> 查找阻塞的线程，只支持找出 synchronized 关键字阻塞住的线程；<br><code>thread -n 3</code> 当前最忙的三个线程；<br>`thread</td>
-<td>grep WAITING` 等待的线程</td>
+<td><code>thread -b</code> 查找阻塞的线程，只支持找出 synchronized 关键字阻塞住的线程；<!-- raw HTML omitted --><code>thread -n 3</code> 当前最忙的三个线程；<!-- raw HTML omitted --><code>thread | grep WAITING</code> 等待的线程</td>
+<td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/mbean.html">mbean</a></td>
-<td><code>mbean</code>所有 MBean信息<br><code>mbean java.lang:type=Memory</code> 属性信息<br><code>mbean -m java.lang:type=Memory</code> 元信息</td>
+<td><code>mbean</code>所有 MBean信息<!-- raw HTML omitted --><code>mbean java.lang:type=Memory</code> 属性信息<!-- raw HTML omitted --><code>mbean -m java.lang:type=Memory</code> 元信息</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-
 <blockquote>
 <p><a href="https://blog.csdn.net/pange1991/article/details/53860651">Java 线程的 6种 状态及切换</a></p>
-
 <ol>
 <li>初始(<code>NEW</code>)：新创建了一个线程对象，但还没有调用start()方法。</li>
 <li>运行(<code>RUNNABLE</code>)：Java线程中将就绪（ready）和运行中（running）两种状态笼统的称为“运行”。
@@ -326,9 +296,7 @@ $ reset -h</code></pre></div>
 <li>终止(<code>TERMINATED</code>)：表示该线程已经执行完毕</li>
 </ol>
 </blockquote>
-
 <h2 id="类信息-class">类信息 Class</h2>
-
 <table>
 <thead>
 <tr>
@@ -337,54 +305,45 @@ $ reset -h</code></pre></div>
 <th>原理</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><a href="https://alibaba.github.io/arthas/sc.html">sc</a></td>
-<td><code>sc demo.*</code> 模糊搜索已加载的类<br><code>sc -d demo.MathGame</code> 类的详细信息（<strong>来自哪个 jar</strong>，接口、父类、注解&hellip;） <br><code>sc -d -f demo.MathGame</code> 类的字段信息</td>
+<td><code>sc demo.*</code> 模糊搜索已加载的类<!-- raw HTML omitted --><code>sc -d demo.MathGame</code> 类的详细信息（<strong>来自哪个 jar</strong>，接口、父类、注解&hellip;） <!-- raw HTML omitted --><code>sc -d -f demo.MathGame</code> 类的字段信息</td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/sm.html">sm</a></td>
-<td><code>sm demo.MathGame</code> 查看类的方法<br><code>sm -d demo.MathGame</code> 查看每个方法的签名<br><code>sm -d demo.MathGame primeFactors</code> 查看指定方法签名</td>
+<td><code>sm demo.MathGame</code> 查看类的方法<!-- raw HTML omitted --><code>sm -d demo.MathGame</code> 查看每个方法的签名<!-- raw HTML omitted --><code>sm -d demo.MathGame primeFactors</code> 查看指定方法签名</td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/jad.html">jad</a></td>
-<td><code>jad demo.MathGame</code> 反编译指定的类<br><code>jad demo.MathGame main</code> 反编译指的方法</td>
+<td><code>jad demo.MathGame</code> 反编译指定的类<!-- raw HTML omitted --><code>jad demo.MathGame main</code> 反编译指的方法</td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/dump.html">dump [class]</a></td>
 <td>把指定类 dump 到本地文件，支持通配符</td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/ognl.html">ognl</a></td>
 <td>执行ognl表达式</td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/getstatic.html">getstatic</a></td>
-<td>查看类的静态属性 <br><code>getstatic demo.MathGame random</code></td>
+<td>查看类的静态属性 <!-- raw HTML omitted --><code>getstatic demo.MathGame random</code></td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/classloader.html">classloader</a></td>
 <td><code>classloader</code></td>
-<td><code>classloader -t</code>统计 classloader 信息 <br><code>classloader -c 3d4eac69  -r META-INF/MANIFEST.MF</code> 查找资源</td>
+<td><code>classloader -t</code>统计 classloader 信息 <!-- raw HTML omitted --><code>classloader -c 3d4eac69  -r META-INF/MANIFEST.MF</code> 查找资源</td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="热更新-hot">热更新 Hot</h2>
-
 <table>
 <thead>
 <tr>
@@ -393,37 +352,32 @@ $ reset -h</code></pre></div>
 <th>原理</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><a href="https://alibaba.github.io/arthas/mc.html">mc</a></td>
 <td>Memory Compiler/内存编译器，编译<code>.java</code>文件生成<code>.class</code></td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/redefine.html">redefine</a></td>
-<td>加载外部的 <code>.class</code> 文件<br><code>redefine /tmp/Test.class</code></td>
+<td>加载外部的 <code>.class</code> 文件<!-- raw HTML omitted --><code>redefine /tmp/Test.class</code></td>
 <td><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/instrument/Instrumentation.html">Instrumentation</a></td>
 </tr>
 </tbody>
 </table>
-
 <blockquote>
 <ul>
 <li>jad命令反编译，然后可以用其它编译器，比如vim来修改源码</li>
 <li>mc命令来内存编译修改过的代码</li>
 <li>用redefine命令加载新的字节码
-
 <ul>
 <li>不允许新增加field/method</li>
 <li>正在跑的函数，没有退出不能生效</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 </blockquote>
-
 <h2 id="监控-debug">监控 Debug</h2>
-
 <table>
 <thead>
 <tr>
@@ -432,42 +386,35 @@ $ reset -h</code></pre></div>
 <th>原理</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><a href="https://alibaba.github.io/arthas/watch.html">watch</a></td>
-<td>观察方法的 <strong>参数</strong>、<strong>返回值</strong>、<strong>异常</strong><br><code>watch demo.MathGame primeFactors &quot;{params,returnObj}&quot; -x 2</code> 打印参数和返回值</td>
+<td>观察方法的 <strong>参数</strong>、<strong>返回值</strong>、<strong>异常</strong><!-- raw HTML omitted --><code>watch demo.MathGame primeFactors &quot;{params,returnObj}&quot; -x 2</code> 打印参数和返回值</td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/trace.html">trace</a></td>
-<td>方法路径上的每个节点上耗时<br><code>trace demo.MathGame run</code><br><code>trace demo.MathGame run '#cost &gt; 10'</code> 耗时大于10ms的调用路径</td>
+<td>方法路径上的每个节点上耗时<!-- raw HTML omitted --><code>trace demo.MathGame run</code><!-- raw HTML omitted --><code>trace demo.MathGame run '#cost &gt; 10'</code> 耗时大于10ms的调用路径</td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/stack.html">stack</a></td>
-<td>当前方法被调用的路径br<br><code>stack demo.MathGame primeFactors</code></td>
+<td>当前方法被调用的路径br<!-- raw HTML omitted --><code>stack demo.MathGame primeFactors</code></td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/tt.html">tt</a></td>
-<td>TimeTunnel <br><code>tt -t -n3 demo.MathGame primeFactors</code> + <code>tt -i 1003</code></td>
+<td>TimeTunnel <!-- raw HTML omitted --><code>tt -t -n3 demo.MathGame primeFactors</code> + <code>tt -i 1003</code></td>
 <td></td>
 </tr>
-
 <tr>
 <td><a href="https://alibaba.github.io/arthas/monitor.html">monitor</a></td>
-<td>对指定类的方法进行监控(次数、成功、失败 等)，<code>-c</code> 指定监控周期<br/><code>monitor -c 5 demo.MathGame primeFactors</code></td>
+<td>对指定类的方法进行监控(次数、成功、失败 等)，<code>-c</code> 指定监控周期<!-- raw HTML omitted --><code>monitor -c 5 demo.MathGame primeFactors</code></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="全局开关">全局开关</h2>
-
 <blockquote>
 <p><a href="https://alibaba.github.io/arthas/options.html#options">https://alibaba.github.io/arthas/options.html#options</a></p>
 </blockquote>
@@ -501,23 +448,21 @@ $ reset -h</code></pre></div>
 
   <aside class="book-toc level-3 fixed">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#命令列表">命令列表</a>
-<ul>
-<li><a href="#查看帮助">查看帮助</a>
-<ul>
-<li><a href="#help">$ help</a></li>
-<li><a href="#查看命令帮助">查看命令帮助</a></li>
-</ul></li>
-<li><a href="#基础命令-base">基础命令 Base</a></li>
-<li><a href="#系统信息-sys">系统信息 Sys</a></li>
-<li><a href="#虚拟机-信息-jvm">虚拟机 信息 JVM</a></li>
-<li><a href="#类信息-class">类信息 Class</a></li>
-<li><a href="#热更新-hot">热更新 Hot</a></li>
-<li><a href="#监控-debug">监控 Debug</a></li>
-<li><a href="#全局开关">全局开关</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#查看帮助">查看帮助</a>
+      <ul>
+        <li><a href="#-help">$ help</a></li>
+        <li><a href="#查看命令帮助">查看命令帮助</a></li>
+      </ul>
+    </li>
+    <li><a href="#基础命令-base">基础命令 Base</a></li>
+    <li><a href="#系统信息-sys">系统信息 Sys</a></li>
+    <li><a href="#虚拟机-信息-jvm">虚拟机 信息 JVM</a></li>
+    <li><a href="#类信息-class">类信息 Class</a></li>
+    <li><a href="#热更新-hot">热更新 Hot</a></li>
+    <li><a href="#监控-debug">监控 Debug</a></li>
+    <li><a href="#全局开关">全局开关</a></li>
+  </ul>
 </nav>
   </aside>
 

@@ -7,7 +7,7 @@
 <title>Jcmd | Troubleshooting</title>
 
 
-<link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+<link rel="stylesheet" href="/Troubleshooting/book.min.a2277534155c5e81ce2c8ca6a4cd295525f25c75788a2e4e72c3310491c743b1.css">
 
 
 
@@ -51,18 +51,17 @@ https://github.com/alex-shpak/hugo-book
 
 <ul>
 <li><strong>Arthas</strong>
-
 <ul>
 <li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
-
 <ul>
-<li><a href="/Troubleshooting/docs/Java/jcmd/"><sup>🌈</sup>jcmd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jcmd/"><!-- raw HTML omitted -->🌈<!-- raw HTML omitted -->jcmd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jps/">jps</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstat/">jstat</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstack/">jstack</a></li>
@@ -71,7 +70,9 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/Troubleshooting/docs/Java/jinfo/">jinfo</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstatd/">jstatd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jsadebugd/">jsadebugd</a></li>
-</ul></li>
+</ul>
+</li>
+<li><a href="/Troubleshooting/docs/Jsonde/"><strong>Jsonde</strong></a></li>
 </ul>
 
 
@@ -104,24 +105,16 @@ https://github.com/alex-shpak/hugo-book
 </header>
 
       
-<article class="markdown">
-
-<h1 id="jcmd">jcmd</h1>
-
+<article class="markdown"><h1 id="jcmd">jcmd</h1>
 <p>jcmd 是 JDK 7 之后推出的一个多功能工具，拥有 <code>jmap</code> 的大部分功能。</p>
-
 <h2 id="列出-java-进程">列出 Java 进程</h2>
-
 <p>直接执行 <code>jcmd</code> 即可列出java进行，效果与 <code>jcmd -l</code> 、 <code>jps -ml</code> 的效果是一样的</p>
-
 <h2 id="打印出-java-进行支持的命令">打印出 java 进行支持的命令</h2>
-
 <p><code>jcmd 0 help</code> ： 打印出所有java进程支持的命令
 <code>jcmd &lt;pid&gt; help</code> ： 打印出执行中java进程支持的命令</p>
-
 <p>以下是在我的机器上执行的结果，结果打印出了 43976 Java 进程可用的命令。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jcmd <span style="color:#ae81ff">43976</span> help
-<span style="color:#ae81ff">43976</span>:
+43976:
 The following commands are available:
   
 VM.native_memory
@@ -142,17 +135,14 @@ VM.version
 help
 
   
-For more information about a specific command use <span style="color:#e6db74">&#39;help &lt;command&gt;&#39;</span>.</code></pre></div>
-<p><strong>不同环境、不同进程，可用的命令可能会不太一样</strong></p>
-
+For more information about a specific command use <span style="color:#e6db74">&#39;help &lt;command&gt;&#39;</span>.
+</code></pre></div><p><strong>不同环境、不同进程，可用的命令可能会不太一样</strong></p>
 <h2 id="获取可用命令的帮助">获取可用命令的帮助</h2>
-
-<p><code>jcmd &lt;pid&gt; help command</code></p>
-
+<p><code>jcmd &lt;pid&gt; help command </code></p>
 <p>例如:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jcmd <span style="color:#ae81ff">43976</span> help GC.heap_dump 
 
-<span style="color:#ae81ff">43976</span>:
+43976:
 GC.heap_dump
 Generate a HPROF format dump of the Java heap.
   
@@ -164,27 +154,23 @@ Arguments:
 	filename :  Name of the dump file <span style="color:#f92672">(</span>STRING, no default value<span style="color:#f92672">)</span>
   
 Options: <span style="color:#f92672">(</span>options must be specified using the &lt;key&gt; or &lt;key&gt;<span style="color:#f92672">=</span>&lt;value&gt; syntax<span style="color:#f92672">)</span>
-	-all : <span style="color:#f92672">[</span>optional<span style="color:#f92672">]</span> Dump all objects, including unreachable objects <span style="color:#f92672">(</span>BOOLEAN, false<span style="color:#f92672">)</span></code></pre></div>
-<h2 id="使用-jcmd-支持的命令">使用 jcmd 支持的命令</h2>
-
-<p><code>jcmd &lt;pid&gt; command</code></p>
-
+	-all : <span style="color:#f92672">[</span>optional<span style="color:#f92672">]</span> Dump all objects, including unreachable objects <span style="color:#f92672">(</span>BOOLEAN, false<span style="color:#f92672">)</span>
+</code></pre></div><h2 id="使用-jcmd-支持的命令">使用 jcmd 支持的命令</h2>
+<p><code>jcmd &lt;pid&gt; command </code></p>
 <p>例如:</p>
-
 <p><strong>打印 JVM 版本</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jcmd <span style="color:#ae81ff">43976</span> VM.version
-<span style="color:#ae81ff">43976</span>:
-Java HotSpot<span style="color:#f92672">(</span>TM<span style="color:#f92672">)</span> <span style="color:#ae81ff">64</span>-Bit Server VM version <span style="color:#ae81ff">24</span>.75-b04
-JDK <span style="color:#ae81ff">7</span>.0_75</code></pre></div>
-<p><strong>打印 JVM 参数</strong></p>
+43976:
+Java HotSpot<span style="color:#f92672">(</span>TM<span style="color:#f92672">)</span> 64-Bit Server VM version 24.75-b04
+JDK 7.0_75
+</code></pre></div><p><strong>打印 JVM 参数</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jcmd <span style="color:#ae81ff">43976</span> VM.command_line
-<span style="color:#ae81ff">43976</span>:
+43976:
 VM Arguments:
-jvm_args: -Djava.awt.headless<span style="color:#f92672">=</span>true -Didea.version<span style="color:#f92672">==</span><span style="color:#ae81ff">2016</span>.3.3 -Xmx768m -Didea.maven.embedder.version<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>.3.9 -Dfile.encoding<span style="color:#f92672">=</span>UTF-8 
+jvm_args: -Djava.awt.headless<span style="color:#f92672">=</span>true -Didea.version<span style="color:#f92672">==</span>2016.3.3 -Xmx768m -Didea.maven.embedder.version<span style="color:#f92672">=</span>3.3.9 -Dfile.encoding<span style="color:#f92672">=</span>UTF-8 
 java_command: org.jetbrains.idea.maven.server.RemoteMavenServer
-Launcher Type: SUN_STANDARD</code></pre></div>
-<h2 id="部分命令功能">部分命令功能</h2>
-
+Launcher Type: SUN_STANDARD
+</code></pre></div><h2 id="部分命令功能">部分命令功能</h2>
 <table>
 <thead>
 <tr>
@@ -192,72 +178,58 @@ Launcher Type: SUN_STANDARD</code></pre></div>
 <th align="left">英文解释</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="right"><strong>GC.heap_dump</strong></td>
 <td align="left">Generate a HPROF format dump of the Java heap.</td>
 </tr>
-
 <tr>
 <td align="right"><strong>Thread.print</strong></td>
 <td align="left">Print all threads with stacktraces.</td>
 </tr>
-
 <tr>
 <td align="right"></td>
-<td align="left"></td>
+<td></td>
 </tr>
-
 <tr>
 <td align="right">GC.run</td>
 <td align="left">all java.lang.System.gc().</td>
 </tr>
-
 <tr>
 <td align="right">GC.class_histogram</td>
 <td align="left">Provide statistics about the Java heap usage.</td>
 </tr>
-
 <tr>
 <td align="right">GC.run_finalization</td>
 <td align="left">Call java.lang.System.runFinalization().</td>
 </tr>
-
 <tr>
 <td align="right"></td>
-<td align="left"></td>
+<td></td>
 </tr>
-
 <tr>
 <td align="right">VM.uptime</td>
 <td align="left">Print VM uptime.</td>
 </tr>
-
 <tr>
 <td align="right"><strong>VM.system_properties</strong></td>
 <td align="left">Print system properties.</td>
 </tr>
-
 <tr>
 <td align="right"><strong>VM.command_line</strong></td>
 <td align="left">Print the command line used to start this VM instance.</td>
 </tr>
-
 <tr>
 <td align="right"><strong>VM.flags</strong></td>
 <td align="left">Print VM flag options and their current values.</td>
 </tr>
-
 <tr>
 <td align="right">VM.version</td>
 <td align="left">Print JVM version information.</td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="read-more">Read More</h2>
-
 <blockquote>
 <ul>
 <li>官方文档 <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jcmd.html">jcmd</a></li>
@@ -267,7 +239,14 @@ Launcher Type: SUN_STANDARD</code></pre></div>
 </article>
 
       
-<div class="book-footer justify-end">
+<div class="book-footer justify-between">
+  
+  <div>
+    
+    <a href="https://github.com/hello-world-example/Troubleshooting/commit/740fd6133073e397bd38051cadbc968747b77e30" title='Last modified Feb 21, 2020 by 杨凯彬' target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/calendar.svg" alt="Changed" /> Feb 21, 2020
+    </a>
+  </div>
   
   
   <div>
@@ -287,17 +266,14 @@ Launcher Type: SUN_STANDARD</code></pre></div>
 
   <aside class="book-toc level-3 fixed">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#jcmd">jcmd</a>
-<ul>
-<li><a href="#列出-java-进程">列出 Java 进程</a></li>
-<li><a href="#打印出-java-进行支持的命令">打印出 java 进行支持的命令</a></li>
-<li><a href="#获取可用命令的帮助">获取可用命令的帮助</a></li>
-<li><a href="#使用-jcmd-支持的命令">使用 jcmd 支持的命令</a></li>
-<li><a href="#部分命令功能">部分命令功能</a></li>
-<li><a href="#read-more">Read More</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#列出-java-进程">列出 Java 进程</a></li>
+    <li><a href="#打印出-java-进行支持的命令">打印出 java 进行支持的命令</a></li>
+    <li><a href="#获取可用命令的帮助">获取可用命令的帮助</a></li>
+    <li><a href="#使用-jcmd-支持的命令">使用 jcmd 支持的命令</a></li>
+    <li><a href="#部分命令功能">部分命令功能</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
 </nav>
   </aside>
 

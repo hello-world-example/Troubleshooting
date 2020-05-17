@@ -7,7 +7,7 @@
 <title>Jps | Troubleshooting</title>
 
 
-<link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+<link rel="stylesheet" href="/Troubleshooting/book.min.a2277534155c5e81ce2c8ca6a4cd295525f25c75788a2e4e72c3310491c743b1.css">
 
 
 
@@ -51,18 +51,17 @@ https://github.com/alex-shpak/hugo-book
 
 <ul>
 <li><strong>Arthas</strong>
-
 <ul>
 <li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
-
 <ul>
-<li><a href="/Troubleshooting/docs/Java/jcmd/"><sup>🌈</sup>jcmd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jcmd/"><!-- raw HTML omitted -->🌈<!-- raw HTML omitted -->jcmd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jps/">jps</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstat/">jstat</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstack/">jstack</a></li>
@@ -71,7 +70,9 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/Troubleshooting/docs/Java/jinfo/">jinfo</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstatd/">jstatd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jsadebugd/">jsadebugd</a></li>
-</ul></li>
+</ul>
+</li>
+<li><a href="/Troubleshooting/docs/Jsonde/"><strong>Jsonde</strong></a></li>
 </ul>
 
 
@@ -104,18 +105,11 @@ https://github.com/alex-shpak/hugo-book
 </header>
 
       
-<article class="markdown">
-
-<h1 id="jps">jps</h1>
-
+<article class="markdown"><h1 id="jps">jps</h1>
 <p>jps 可以列出当前系统的Java进程</p>
-
 <h2 id="语法">语法</h2>
-
 <p><code>jps [ options ] [ hostid ]</code></p>
-
 <p><code>jps [-q] [-mlvV] [&lt;hostid&gt;]</code></p>
-
 <h2 id="options">options</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-l          显示main方法包名 或者 应用jar包的全路径
 -m          显示main方法参数
@@ -125,23 +119,26 @@ https://github.com/alex-shpak/hugo-book
 -q          只列出进程ID
 
 -V          通过 flags 文件传递给JVM的参数 <span style="color:#f92672">(</span>the .hotspotrc file or the file specified by the -XX:Flags<span style="color:#f92672">=</span>&lt;filename&gt; argument<span style="color:#f92672">)</span>
--J          给jps命令传递JVM参数，例如：jps -J-Xms2m 分配了 2M 起始内存</code></pre></div>
-<h2 id="hostid">hostid</h2>
-
+-J          给jps命令传递JVM参数，例如：jps -J-Xms2m 分配了 2M 起始内存
+</code></pre></div><h2 id="hostid">hostid</h2>
 <p>如果监控本地 JVM进程的话就是 进程ID；
 如果进行远程监控，详请查看 <a href="../jstatd.md">jstatd</a> 部分例子</p>
-
 <h2 id="官方文档">官方文档</h2>
-
 <blockquote>
 <p>jps - Java Virtual Machine Process Status Tool <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html">JDK7</a>/<a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html">JDK8</a></p>
 </blockquote>
-
 <p>JDK7 和 JDK8 对 jps 的解释还是稍有不同的。</p>
 </article>
 
       
-<div class="book-footer justify-end">
+<div class="book-footer justify-between">
+  
+  <div>
+    
+    <a href="https://github.com/hello-world-example/Troubleshooting/commit/740fd6133073e397bd38051cadbc968747b77e30" title='Last modified Feb 21, 2020 by 杨凯彬' target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/calendar.svg" alt="Changed" /> Feb 21, 2020
+    </a>
+  </div>
   
   
   <div>
@@ -161,15 +158,12 @@ https://github.com/alex-shpak/hugo-book
 
   <aside class="book-toc level-3 fixed">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#jps">jps</a>
-<ul>
-<li><a href="#语法">语法</a></li>
-<li><a href="#options">options</a></li>
-<li><a href="#hostid">hostid</a></li>
-<li><a href="#官方文档">官方文档</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#语法">语法</a></li>
+    <li><a href="#options">options</a></li>
+    <li><a href="#hostid">hostid</a></li>
+    <li><a href="#官方文档">官方文档</a></li>
+  </ul>
 </nav>
   </aside>
 

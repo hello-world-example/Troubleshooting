@@ -7,7 +7,7 @@
 <title>Jstack | Troubleshooting</title>
 
 
-<link rel="stylesheet" href="/Troubleshooting/book.min.79de1f7861b0c98f453c0a93bebf3608a280809e417787746c373699639900d7.css">
+<link rel="stylesheet" href="/Troubleshooting/book.min.a2277534155c5e81ce2c8ca6a4cd295525f25c75788a2e4e72c3310491c743b1.css">
 
 
 
@@ -51,18 +51,17 @@ https://github.com/alex-shpak/hugo-book
 
 <ul>
 <li><strong>Arthas</strong>
-
 <ul>
 <li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
-
 <ul>
-<li><a href="/Troubleshooting/docs/Java/jcmd/"><sup>🌈</sup>jcmd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jcmd/"><!-- raw HTML omitted -->🌈<!-- raw HTML omitted -->jcmd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jps/">jps</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstat/">jstat</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstack/">jstack</a></li>
@@ -71,7 +70,9 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/Troubleshooting/docs/Java/jinfo/">jinfo</a></li>
 <li><a href="/Troubleshooting/docs/Java/jstatd/">jstatd</a></li>
 <li><a href="/Troubleshooting/docs/Java/jsadebugd/">jsadebugd</a></li>
-</ul></li>
+</ul>
+</li>
+<li><a href="/Troubleshooting/docs/Jsonde/"><strong>Jsonde</strong></a></li>
 </ul>
 
 
@@ -104,12 +105,8 @@ https://github.com/alex-shpak/hugo-book
 </header>
 
       
-<article class="markdown">
-
-<h1 id="jstack">jstack</h1>
-
+<article class="markdown"><h1 id="jstack">jstack</h1>
 <p><code>jstack</code> 可以打印出 线程的状态、调用栈、锁资源 等信息。 可以用于分析死锁、性能瓶颈等问题。用法相对简单但非常有用。</p>
-
 <h2 id="参数">参数</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-F          当 jstack <span style="color:#f92672">[</span>-l<span style="color:#f92672">]</span> &lt;pid&gt; 无相应的时候可以使用该参数强制dump
 
@@ -117,18 +114,27 @@ https://github.com/alex-shpak/hugo-book
 
 -m          打印 java 和 native 代码的所有栈信息
 
--h|-help    打印帮助信息</code></pre></div>
-<h2 id="read-more">Read More</h2>
-
+-h|-help    打印帮助信息
+</code></pre></div><h2 id="read-more">Read More</h2>
 <ul>
-<li><p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jstack.html">jstack</a> 官方文档</p></li>
-
-<li><p><a href="http://www.blogjava.net/jzone/articles/303979.html">JAVA线程dump的分析 &mdash; jstack pid</a></p></li>
+<li>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jstack.html">jstack</a> 官方文档</p>
+</li>
+<li>
+<p><a href="http://www.blogjava.net/jzone/articles/303979.html">JAVA线程dump的分析 &mdash; jstack pid</a></p>
+</li>
 </ul>
 </article>
 
       
-<div class="book-footer justify-end">
+<div class="book-footer justify-between">
+  
+  <div>
+    
+    <a href="https://github.com/hello-world-example/Troubleshooting/commit/740fd6133073e397bd38051cadbc968747b77e30" title='Last modified Feb 21, 2020 by 杨凯彬' target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/calendar.svg" alt="Changed" /> Feb 21, 2020
+    </a>
+  </div>
   
   
   <div>
@@ -148,13 +154,10 @@ https://github.com/alex-shpak/hugo-book
 
   <aside class="book-toc level-3 fixed">
     <nav id="TableOfContents">
-<ul>
-<li><a href="#jstack">jstack</a>
-<ul>
-<li><a href="#参数">参数</a></li>
-<li><a href="#read-more">Read More</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#参数">参数</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
 </nav>
   </aside>
 

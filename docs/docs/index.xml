@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docs on Troubleshooting</title>
@@ -25,7 +25,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/</guid>
-      <description>使用案例 诊断 Docker 里的 Java 进程 $ docker exec -it ${containerId} /bin/bash \  -c &amp;#34;wget https://alibaba.github.io/arthas/arthas-boot.jar &amp;amp;&amp;amp; java -jar arthas-boot.</description>
+      <description>使用案例 诊断 Docker 里的 Java 进程 $ docker exec -it ${containerId} /bin/bash \  -c &amp;#34;wget https://alibaba.github.io/arthas/arthas-boot.jar &amp;amp;&amp;amp; java -jar arthas-boot.jar&amp;#34; </description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Commands/</guid>
       <description>命令列表  启动示例程序
-​ wget https://alibaba.github.io/arthas/arthas-demo.jar ​ java -jar arthas-demo.jar
+​	wget https://alibaba.github.io/arthas/arthas-demo.jar ​	java -jar arthas-demo.jar
  查看帮助 $ help 查看支持的命令
 NAME DESCRIPTION Base&amp;gt; help Display Arthas Help Base&amp;gt; version Display Arthas version Base&amp;gt; cls Clear the screen Base&amp;gt; history Display command history Base&amp;gt; keymap Display all the available keymap for the specified connection. Base&amp;gt; session Display current session information Base&amp;gt; pwd Return working directory name Base&amp;gt; cat Concatenate and print files Base&amp;gt; shutdown Shutdown Arthas server and exit the console Base&amp;gt; quit 退出 Base&amp;gt; grep 管道过滤 Sys&amp;gt; sysprop Display, and change the system properties.</description>
     </item>
@@ -46,7 +46,7 @@ NAME DESCRIPTION Base&amp;gt; help Display Arthas Help Base&amp;gt; version Disp
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/FAQ/</guid>
-      <description> 常见问题 [ERROR] Target process 80696 is not the process using port 3658, you will connect to an unexpected process. [ERROR] 1. Try to restart arthas-boot, select process 62498, shutdown it first. [ERROR] 2. Or try to use different telnet port, for example: java -jar arthas-boot.jar --telnet-port 9998 --http-port -1</description>
+      <description>常见问题 [ERROR] Target process 80696 is not the process using port 3658, you will connect to an unexpected process. [ERROR] 1. Try to restart arthas-boot, select process 62498, shutdown it first. [ERROR] 2. Or try to use different telnet port, for example: java -jar arthas-boot.jar --telnet-port 9998 --http-port -1 </description>
     </item>
     
     <item>
