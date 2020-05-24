@@ -15,6 +15,7 @@
 <link rel="icon" href="/Troubleshooting/favicon.png" type="image/x-icon">
 
 
+<link rel="alternate" type="application/rss+xml" href="https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/index.xml" title="Troubleshooting" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -55,8 +56,12 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
-<li><a href="/Troubleshooting/docs/Arthas/Case/">案例</a></li>
 <li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Case/">案例..</a>
+<ul>
+<li><a href="/Troubleshooting/docs/Arthas/Case/Slow-Start/">应用启动耗时分析</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
@@ -106,24 +111,21 @@ https://github.com/alex-shpak/hugo-book
 
       
 <article class="markdown"><h1 id="使用案例">使用案例</h1>
-<h2 id="诊断-docker-里的-java-进程">诊断 Docker 里的 Java 进程</h2>
+<h2 id="查找被加载的类">查找被加载的类</h2>
+<pre><code>sc *Main
+xyz.kail.demo.troubleshooting.jsonde.JsondeMain
+xyz.kail.demo.troubleshooting.jsonde.JsondeMain$$EnhancerBySpringCGLIB$$95be0a45
+</code></pre><h2 id="诊断-docker-里的-java-进程">诊断 Docker 里的 Java 进程</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker exec -it  <span style="color:#e6db74">${</span>containerId<span style="color:#e6db74">}</span> /bin/bash <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>  -c <span style="color:#e6db74">&#34;wget https://alibaba.github.io/arthas/arthas-boot.jar &amp;&amp; java -jar arthas-boot.jar&#34;</span>
 </code></pre></div></article>
 
       
-<div class="book-footer justify-between">
-  
-  <div>
-    
-    <a href="https://github.com/hello-world-example/Troubleshooting/commit/5fff3a5933aa303c4e3f95939f7b8c0327b26142" title='Last modified Sep 2, 2019 by kaibin.yang' target="_blank" rel="noopener">
-      <img src="/Troubleshooting/svg/calendar.svg" alt="Changed" /> Sep 2, 2019
-    </a>
-  </div>
+<div class="book-footer justify-end">
   
   
   <div>
-    <a href="https://github.com/hello-world-example/Troubleshooting/edit/master/HuGo/content/docs/Arthas/Case.md" target="_blank" rel="noopener">
+    <a href="https://github.com/hello-world-example/Troubleshooting/edit/master/HuGo/content/docs/Arthas/Case/_index.md" target="_blank" rel="noopener">
       <img src="/Troubleshooting/svg/edit.svg" alt="Edit" /> Edit this page
     </a>
   </div>
@@ -140,6 +142,7 @@ https://github.com/alex-shpak/hugo-book
   <aside class="book-toc level-3 fixed">
     <nav id="TableOfContents">
   <ul>
+    <li><a href="#查找被加载的类">查找被加载的类</a></li>
     <li><a href="#诊断-docker-里的-java-进程">诊断 Docker 里的 Java 进程</a></li>
   </ul>
 </nav>

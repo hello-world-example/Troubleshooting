@@ -21,15 +21,6 @@
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/</guid>
-      <description>使用案例 诊断 Docker 里的 Java 进程 $ docker exec -it ${containerId} /bin/bash \  -c &amp;#34;wget https://alibaba.github.io/arthas/arthas-boot.jar &amp;amp;&amp;amp; java -jar arthas-boot.jar&amp;#34; </description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Commands/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

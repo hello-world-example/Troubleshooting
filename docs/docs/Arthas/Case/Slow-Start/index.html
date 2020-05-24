@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slow Start | Troubleshooting</title>
+
+
+<link rel="stylesheet" href="/Troubleshooting/book.min.a2277534155c5e81ce2c8ca6a4cd295525f25c75788a2e4e72c3310491c743b1.css">
+
+
+
+
+<link rel="icon" href="/Troubleshooting/favicon.png" type="image/x-icon">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="https://hello-world-example.github.io/Troubleshooting/">Troubleshooting</a>
+</h2>
+
+
+
+
+
+
+    
+  
+  
+  
+
+  <style>
+  nav ul a[href$="\2fTroubleshooting\2f docs\2f Arthas\2f Case\2fSlow-Start\2f "] {
+      color: #004ed0;
+  }
+  </style>
+
+<ul>
+<li><strong>Arthas</strong>
+<ul>
+<li><a href="/Troubleshooting/docs/Arthas/Install/">安装</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Commands/">命令列表</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Advice/">Advice</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/FAQ/">常见问题</a></li>
+<li><a href="/Troubleshooting/docs/Arthas/Case/">案例..</a>
+<ul>
+<li><a href="/Troubleshooting/docs/Arthas/Case/Slow-Start/">应用启动耗时分析</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="/Troubleshooting/docs/Java/"><strong>JDK 内建</strong></a>
+<ul>
+<li><a href="/Troubleshooting/docs/Java/jcmd/"><!-- raw HTML omitted -->🌈<!-- raw HTML omitted -->jcmd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jps/">jps</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstat/">jstat</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstack/">jstack</a></li>
+<li><a href="/Troubleshooting/docs/Java/jmap/">jmap</a></li>
+<li><a href="/Troubleshooting/docs/Java/jhat/">jhat</a></li>
+<li><a href="/Troubleshooting/docs/Java/jinfo/">jinfo</a></li>
+<li><a href="/Troubleshooting/docs/Java/jstatd/">jstatd</a></li>
+<li><a href="/Troubleshooting/docs/Java/jsadebugd/">jsadebugd</a></li>
+</ul>
+</li>
+<li><a href="/Troubleshooting/docs/Jsonde/"><strong>Jsonde</strong></a></li>
+</ul>
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/Troubleshooting/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Slow Start</strong>
+</header>
+
+      
+<article class="markdown"><h1 id="应用启动耗时分析">应用启动耗时分析</h1>
+<p>Arthas 本身支持 <code>trace</code> 和 <code>profiler</code> 功能，分别用于 跟踪每个节点的耗时 和 生成火焰图</p>
+<ul>
+<li><code>trace</code> <a href="https://alibaba.github.io/arthas/trace.html">https://alibaba.github.io/arthas/trace.html</a></li>
+<li><code>profiler</code> <a href="https://alibaba.github.io/arthas/profiler.html">https://alibaba.github.io/arthas/profiler.html</a></li>
+</ul>
+<p>但是 Arthas 常用来分析运行中应用的问题，应用启动过程分析在 Arthas Attach 上应用的时候，已经错过要追踪的方法了。</p>
+<p>这里主要描述了如何时候 Arthas 进行应用启动过程中的分析。</p>
+<h2 id="环境准备">环境准备</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 下载完整的包</span>
+$ wget https://github.com/alibaba/arthas/releases/download/arthas-all-3.2.0/arthas-3.2.0-bin.zip
+
+<span style="color:#75715e"># 解压</span>
+$ unzip arthas-3.2.0-bin.zip
+
+<span style="color:#75715e"># 进入工具目录</span>
+$ cd arthas-3.2.0-bin
+</code></pre></div><h2 id="示例程序">示例程序</h2>
+<p>该程序是一个 Spring Boot 的应用，这里构造一段耗时的方法，夹杂到 Spring 的启动流程中</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Slf4j</span>
+<span style="color:#a6e22e">@Configuration</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SlowConf</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#a6e22e">@PostConstruct</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> InterruptedException <span style="color:#f92672">{</span>
+        log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;init...&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 20_000<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;init...ok&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><h2 id="block-启动的应用">Block 启动的应用</h2>
+<p>在应用的启动参数中添加以下 JVM 参数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">-</span>agentlib<span style="color:#f92672">:</span>jdwp<span style="color:#f92672">=</span>transport<span style="color:#f92672">=</span>dt_socket<span style="color:#f92672">,</span>address<span style="color:#f92672">=</span>8000<span style="color:#f92672">,</span>server<span style="color:#f92672">=</span>y<span style="color:#f92672">,</span>suspend<span style="color:#f92672">=</span>y
+</code></pre></div><p>参数的含义</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">-agentlib:jdwp           <span style="color:#75715e"># 启用 JDWP，它包含若干子选项：</span>
+    transport<span style="color:#f92672">=</span>dt_socket  <span style="color:#75715e"># JPDA front-end和back-end之间的传输方法。dt_socket表示使用套接字传输</span>
+    address<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span>         <span style="color:#75715e"># JVM 在 8000 端口上监听请求</span>
+    server<span style="color:#f92672">=</span>y             <span style="color:#75715e"># y 表示启动的JVM是被调试者，如果为n，则表示启动的JVM是调试器</span>
+    suspend<span style="color:#f92672">=</span>y            <span style="color:#75715e"># y 表示启动的JVM会暂停等待，直到调试器连接上，n表示不暂停等待</span>
+</code></pre></div><p>这时 非 Debug模式 启动应用，会在控制台输出，并 Block 住，等待调试程序的连接</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Listening <span style="color:#66d9ef">for</span> transport dt_socket at address: <span style="color:#ae81ff">8000</span>
+</code></pre></div><p>不增以上参数，使用 IDEA 的 Debug 模式启动应用时，其实也可以在控制台的第一行看到输出以下信息，</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/bin/java <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>-agentlib:jdwp<span style="color:#f92672">=</span>transport<span style="color:#f92672">=</span>dt_socket,address<span style="color:#f92672">=</span>127.0.0.1:49252,suspend<span style="color:#f92672">=</span>y,server<span style="color:#f92672">=</span>n <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>-javaagent:~/Library/Caches/JetBrains/IdeaIC2020.1/captureAgent/debugger-agent.jar <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>-Dfile.encoding<span style="color:#f92672">=</span>UTF-8 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>-classpath ... <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>xyz.kail.demo.troubleshooting.arthas.ArthasApp
+
+Connected to the target VM, address: <span style="color:#e6db74">&#39;127.0.0.1:49252&#39;</span>, transport: <span style="color:#e6db74">&#39;socket&#39;</span>
+</code></pre></div><h2 id="启动-arthas">启动 Arthas</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ./as.sh 
+... <span style="color:#75715e"># 选择 Java 进程，因为这时候 还没完全启动，看不到 main class，这里选择 5</span>
+* <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>: <span style="color:#ae81ff">80041</span> org.jetbrains.idea.maven.server.RemoteMavenServer36
+  <span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>: <span style="color:#ae81ff">94888</span> org.jetbrains.kotlin.daemon.KotlinCompileDaemon
+  <span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>: <span style="color:#ae81ff">95213</span> org.jetbrains.jps.cmdline.Launcher
+  <span style="color:#f92672">[</span>4<span style="color:#f92672">]</span>: <span style="color:#ae81ff">79647</span> 
+  <span style="color:#f92672">[</span>5<span style="color:#f92672">]</span>: <span style="color:#ae81ff">95214</span> -- main class information unavailable
+<span style="color:#ae81ff">5</span>
+
+<span style="color:#75715e"># ... 开启 jdwp 之后，attach Java 进程时会比已经启动的应用慢很多，大概 10几秒</span>
+
+<span style="color:#75715e"># 确认一下，确实是需要调试的应用</span>
+<span style="color:#f92672">[</span>arthas@95214<span style="color:#f92672">]</span>$ sysprop | grep sun.java.command
+sun.java.command                     xyz.kail.demo.troubleshooting.arthas.ArthasApp
+
+<span style="color:#f92672">[</span>arthas@95214<span style="color:#f92672">]</span>$ jvm | grep INPUT-ARGUMENTS
+INPUT-ARGUMENTS     -agentlib:jdwp<span style="color:#f92672">=</span>transport<span style="color:#f92672">=</span>dt_socket,address<span style="color:#f92672">=</span>8000,server<span style="color:#f92672">=</span>y,suspend<span style="color:#f92672">=</span>y
+ 
+<span style="color:#75715e"># 开启 profiler</span>
+<span style="color:#f92672">[</span>arthas@95214<span style="color:#f92672">]</span>$ profiler start -e wall
+Started <span style="color:#f92672">[</span>wall<span style="color:#f92672">]</span> profiling
+</code></pre></div><h2 id="取消启动应用的-block">取消启动应用的 Block</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ jdb -connect com.sun.jdi.SocketAttach:port<span style="color:#f92672">=</span>8000,hostname<span style="color:#f92672">=</span>127.0.0.1
+设置未捕获的java.lang.Throwable
+设置延迟的未捕获的java.lang.Throwable
+正在初始化jdb...
+&gt; 
+VM 已启动: 当前调用堆栈上没有帧
+
+<span style="color:#75715e"># 输入 run 命名，这时 ArthasApp 已开始正常运行，Ctrl + C 退出 jdb</span>
+main<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> run
+</code></pre></div><h2 id="查看-profiler-分析结果">查看 profiler 分析结果</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>arthas@95214<span style="color:#f92672">]</span>$ profiler stop
+profiler output file: /Users/kail/IdeaProjects/github/hello-world-example/Troubleshooting/arthas-output/20200524-135944.svg
+OK
+</code></pre></div><p>在浏览器中打开 profiler 的生成的燃尽图：</p>
+<p><img src="../-images/image-20200524140230200.png" alt="image-20200524140230200"></p>
+<p>点击最后一个启动 main 方式类，可以看出，真个启动过程，大部分消耗在了 <code>SlowConf.init</code> 方法上了</p>
+<p><img src="../-images/image-20200524140530699.png" alt="image-20200524140530699"></p>
+<h2 id="使用-trace-分析具体耗时">使用 trace 分析具体耗时</h2>
+<p>trace 分析启动过程的方式要稍微复杂些，因为应用启动 Block 时，<code>main</code> 方法还没被加载，所以没办法 <code>trace</code>，需要先执行到 <code>main</code> 方法，大致流程如下：</p>
+<ul>
+<li>带 <code>-agentlib:jdwp</code> 启动应用，这是应用被 Block，等到 <code>jdb</code> 链接</li>
+<li>使用 Arthas attach 到应用，这时候 <code>sc *ArthasApp</code> 是搜不到的</li>
+<li>使用 <code>jdb</code> Debug 应用，设置在入口设置断点，格式：<code>stop at 类全路径名:行号</code>
+<ul>
+<li>如： <code>stop at xyz.kail.demo.troubleshooting.arthas.ArthasApp:13</code></li>
+</ul>
+</li>
+<li>在 <code>jdb</code> 控制太输出 <code>cont</code> 指令 执行到入口的断点处</li>
+<li>在 Arthas 控制台 <code>trace</code> 慢流程的方法</li>
+<li>重复以上过程，细化 <code>trace</code> 的类和方法</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 查看 Classloader</span>
+<span style="color:#f92672">[</span>arthas@808<span style="color:#f92672">]</span>$ classloader -t
++-BootstrapClassLoader                                                                                                                                                                     
++-sun.misc.Launcher$ExtClassLoader@7cc8d617                                                                                                                                                
+  +-com.taobao.arthas.agent.ArthasClassloader@529ffda0                                                                                                                                     
+  +-sun.misc.Launcher$AppClassLoader@18b4aac2     
+
+<span style="color:#75715e"># 使用 AppClassLoader 加载要执行的类（否则无法 trace）</span>
+<span style="color:#f92672">[</span>arthas@808<span style="color:#f92672">]</span>$ classloader -c 18b4aac2 --load org.springframework.boot.SpringApplication
+
+<span style="color:#75715e"># trace 之后（这里拦截 String 的包），开启 jdb，使程序开始启动，等待执行完成</span>
+<span style="color:#f92672">[</span>arthas@808<span style="color:#f92672">]</span>$ trace org.springframework* * <span style="color:#e6db74">&#39;#cost &gt; 1000&#39;</span>
+Press Q or Ctrl+C to abort.
+Affect<span style="color:#f92672">(</span>class-cnt:1 , method-cnt:81<span style="color:#f92672">)</span> cost in <span style="color:#ae81ff">314</span> ms.
+<span style="color:#e6db74">`</span>---ts<span style="color:#f92672">=</span>2020-05-24 15:48:50;thread_name<span style="color:#f92672">=</span>main;id<span style="color:#f92672">=</span>1;is_daemon<span style="color:#f92672">=</span>false;priority<span style="color:#f92672">=</span>5;TCCL<span style="color:#f92672">=</span>sun.misc.Launcher$AppClassLoader@18b4aac2
+    <span style="color:#e6db74">`</span>---<span style="color:#f92672">[</span>32459.956569ms<span style="color:#f92672">]</span> org.springframework.boot.SpringApplication:run<span style="color:#f92672">()</span>
+        <span style="color:#e6db74">`</span>---<span style="color:#f92672">[</span>32459.024813ms<span style="color:#f92672">]</span> org.springframework.boot.SpringApplication:run<span style="color:#f92672">()</span> <span style="color:#75715e">#1215</span>
+            <span style="color:#e6db74">`</span>---<span style="color:#f92672">[</span>32458.825821ms<span style="color:#f92672">]</span> org.springframework.boot.SpringApplication:run<span style="color:#f92672">()</span>
+                ...
+                <span style="color:#e6db74">`</span>---<span style="color:#f92672">[</span>32282.689089ms<span style="color:#f92672">]</span> org.springframework.boot.SpringApplication:run<span style="color:#f92672">()</span> <span style="color:#75715e">#1226</span>
+                    <span style="color:#e6db74">`</span>---<span style="color:#f92672">[</span>32282.240717ms<span style="color:#f92672">]</span> org.springframework.boot.SpringApplication:run<span style="color:#f92672">()</span>
+                        ...
+                        +---<span style="color:#f92672">[</span>31271.331255ms<span style="color:#f92672">]</span> org.springframework.boot.SpringApplication:refreshContext<span style="color:#f92672">()</span> <span style="color:#75715e">#315</span>
+                        |   <span style="color:#e6db74">`</span>---<span style="color:#f92672">[</span>31271.273241ms<span style="color:#f92672">]</span> org.springframework.boot.SpringApplication:refreshContext<span style="color:#f92672">()</span>
+                        |       +---<span style="color:#f92672">[</span>31262.084619ms<span style="color:#f92672">]</span> org.springframework.boot.SpringApplication:refresh<span style="color:#f92672">()</span> <span style="color:#75715e">#397</span>
+                        |       |   <span style="color:#e6db74">`</span>---<span style="color:#f92672">[</span>31262.034312ms<span style="color:#f92672">]</span> org.springframework.boot.SpringApplication:refresh<span style="color:#f92672">()</span>
+                        |       |       +---<span style="color:#f92672">[</span>0.009773ms<span style="color:#f92672">]</span> org.springframework.util.Assert:isInstanceOf<span style="color:#f92672">()</span> <span style="color:#75715e">#746</span>
+                        |       |       <span style="color:#e6db74">`</span>---<span style="color:#f92672">[</span>31261.867912ms<span style="color:#f92672">]</span> org.springframework.context.support.AbstractApplicationContext:refresh<span style="color:#f92672">()</span> <span style="color:#75715e">#747 ❤ 这里花了 30 秒</span>
+                        |       <span style="color:#e6db74">`</span>---<span style="color:#f92672">[</span>9.075883ms<span style="color:#f92672">]</span> org.springframework.context.ConfigurableApplicationContext:registerShutdownHook<span style="color:#f92672">()</span> <span style="color:#75715e">#400</span>
+                        ...
+
+
+<span style="color:#f92672">[</span>arthas@1420<span style="color:#f92672">]</span> classloader -c 18b4aac2 --load  org.springframework.context.support.AbstractApplicationContext *
+
+<span style="color:#f92672">[</span>arthas@1420<span style="color:#f92672">]</span> trace org.springframework.context.support.AbstractApplicationContext * <span style="color:#e6db74">&#39;#cost &gt; 10000&#39;</span>
+
+<span style="color:#75715e"># 循坏该步骤（每次重启项目），每次往细节定位</span>
+</code></pre></div><h2 id="其他方法">其他方法</h2>
+<ul>
+<li>以上方法属于通用方法，使用与各种场景，但是</li>
+<li>假如你可以修改代码，在 main 方法入口先 sleep 30 秒，然后打开 Arthas 准备好各种监控的语句，会更简便</li>
+</ul>
+<h2 id="read-more">Read More</h2>
+<ul>
+<li><a href="https://alibaba.github.io/arthas/index.html">Arthas 用户文档</a></li>
+<li><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jpda/index.html">Java Platform Debugger Architecture (JPDA)</a></li>
+<li><a href="https://www.jianshu.com/p/d168ecdce022">Java远程调试（Remote Debugging）的那些事</a></li>
+<li><a href="https://docs.oracle.com/javase/1.5.0/docs/guide/jvmti/jvmti.html#starting">JVMTM Tool Interface</a></li>
+</ul>
+</article>
+
+      
+<div class="book-footer justify-end">
+  
+  
+  <div>
+    <a href="https://github.com/hello-world-example/Troubleshooting/edit/master/HuGo/content/docs/Arthas/Case/Slow-Start.md" target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/edit.svg" alt="Edit" /> Edit this page
+    </a>
+  </div>
+  
+</div>
+
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#环境准备">环境准备</a></li>
+    <li><a href="#示例程序">示例程序</a></li>
+    <li><a href="#block-启动的应用">Block 启动的应用</a></li>
+    <li><a href="#启动-arthas">启动 Arthas</a></li>
+    <li><a href="#取消启动应用的-block">取消启动应用的 Block</a></li>
+    <li><a href="#查看-profiler-分析结果">查看 profiler 分析结果</a></li>
+    <li><a href="#使用-trace-分析具体耗时">使用 trace 分析具体耗时</a></li>
+    <li><a href="#其他方法">其他方法</a></li>
+    <li><a href="#read-more">Read More</a></li>
+  </ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+  
+  
+  
+</body>
+
+</html>

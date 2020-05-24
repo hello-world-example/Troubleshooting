@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Troubleshooting/_sidebar/</loc>
-    <lastmod>2020-02-21T03:43:21+08:00</lastmod>
+    <lastmod>2020-05-17T23:34:26+08:00</lastmod>
   </url>
   
   <url>
@@ -14,7 +14,10 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/</loc>
-    <lastmod>2019-09-02T00:03:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/Slow-Start/</loc>
   </url>
   
   <url>
@@ -84,11 +87,12 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Troubleshooting/docs/Jsonde/</loc>
+    <lastmod>2020-05-17T23:34:26+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Troubleshooting/docs/</loc>
-    <lastmod>2020-02-21T03:43:21+08:00</lastmod>
+    <lastmod>2020-05-17T23:34:26+08:00</lastmod>
   </url>
   
   <url>

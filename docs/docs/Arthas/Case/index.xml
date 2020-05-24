@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Troubleshooting</title>
+    <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/</link>
+    <description>Recent content on Troubleshooting</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/Slow-Start/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Troubleshooting/docs/Arthas/Case/Slow-Start/</guid>
+      <description>应用启动耗时分析 Arthas 本身支持 trace 和 profiler 功能，分别用于 跟踪每个节点的耗时 和 生成火焰图
+ trace https://alibaba.github.io/arthas/trace.html profiler https://alibaba.github.io/arthas/profiler.html  但是 Arthas 常用来分析运行中应用的问题，应用启动过程分析在 Arthas Attach 上应用的时候，已经错过要追踪的方法了。
+这里主要描述了如何时候 Arthas 进行应用启动过程中的分析。
+环境准备 # 下载完整的包 $ wget https://github.com/alibaba/arthas/releases/download/arthas-all-3.2.0/arthas-3.2.0-bin.zip # 解压 $ unzip arthas-3.2.0-bin.zip # 进入工具目录 $ cd arthas-3.2.0-bin 示例程序 该程序是一个 Spring Boot 的应用，这里构造一段耗时的方法，夹杂到 Spring 的启动流程中
+@Slf4j @Configuration public class SlowConf { @PostConstruct public void init() throws InterruptedException { log.info(&amp;#34;init...&amp;#34;); for (int i = 0; i &amp;lt; 20_000; i++) { Thread.</description>
+    </item>
+    
+  </channel>
+</rss>
