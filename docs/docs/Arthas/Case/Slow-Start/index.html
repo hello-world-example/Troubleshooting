@@ -207,7 +207,7 @@ OK
 <ul>
 <li>带 <code>-agentlib:jdwp</code> 启动应用，这是应用被 Block，等到 <code>jdb</code> 链接</li>
 <li>使用 Arthas attach 到应用，这时候 <code>sc *ArthasApp</code> 是搜不到的</li>
-<li>使用 <code>jdb</code> Debug 应用，设置在入口设置断点，格式：<code>stop at 类全路径名:行号</code>
+<li>使用 <code>classloader</code> 指令 加载要 <code>trace</code> 的类，需要 load 哪些类型，可能从 火焰图 或 上次 trace 的结果中找
 <ul>
 <li>如： <code>stop at xyz.kail.demo.troubleshooting.arthas.ArthasApp:13</code></li>
 </ul>
@@ -268,7 +268,14 @@ Affect<span style="color:#f92672">(</span>class-cnt:1 , method-cnt:81<span style
 </article>
 
       
-<div class="book-footer justify-end">
+<div class="book-footer justify-between">
+  
+  <div>
+    
+    <a href="https://github.com/hello-world-example/Troubleshooting/commit/dee05e68d19422843ad6ef18c87e99fc25e3fa3f" title='Last modified May 24, 2020 by kaibin.yang' target="_blank" rel="noopener">
+      <img src="/Troubleshooting/svg/calendar.svg" alt="Changed" /> May 24, 2020
+    </a>
+  </div>
   
   
   <div>

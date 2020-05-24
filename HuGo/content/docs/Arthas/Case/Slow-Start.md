@@ -142,7 +142,7 @@ trace 分析启动过程的方式要稍微复杂些，因为应用启动 Block �
 
 - 带 `-agentlib:jdwp` 启动应用，这是应用被 Block，等到 `jdb` 链接
 - 使用 Arthas attach 到应用，这时候 `sc *ArthasApp` 是搜不到的
-- 使用 `jdb` Debug 应用，设置在入口设置断点，格式：`stop at 类全路径名:行号`
+- 使用 `classloader` 指令 加载要 `trace` 的类，需要 load 哪些类型，可能从 火焰图 或 上次 trace 的结果中找
   - 如： `stop at xyz.kail.demo.troubleshooting.arthas.ArthasApp:13`
 - 在 `jdb` 控制太输出 `cont` 指令 执行到入口的断点处
 - 在 Arthas 控制台 `trace` 慢流程的方法
