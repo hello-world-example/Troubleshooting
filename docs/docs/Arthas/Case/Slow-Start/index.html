@@ -205,14 +205,9 @@ OK
 <h2 id="使用-trace-分析具体耗时">使用 trace 分析具体耗时</h2>
 <p>trace 分析启动过程的方式要稍微复杂些，因为应用启动 Block 时，<code>main</code> 方法还没被加载，所以没办法 <code>trace</code>，需要先执行到 <code>main</code> 方法，大致流程如下：</p>
 <ul>
-<li>带 <code>-agentlib:jdwp</code> 启动应用，这是应用被 Block，等到 <code>jdb</code> 链接</li>
+<li>带 <code>-agentlib:jdwp</code> 启动应用，这时应用被 Block，等到 <code>jdb</code> 链接</li>
 <li>使用 Arthas attach 到应用，这时候 <code>sc *ArthasApp</code> 是搜不到的</li>
-<li>使用 <code>classloader</code> 指令 加载要 <code>trace</code> 的类，需要 load 哪些类型，可能从 火焰图 或 上次 trace 的结果中找
-<ul>
-<li>如： <code>stop at xyz.kail.demo.troubleshooting.arthas.ArthasApp:13</code></li>
-</ul>
-</li>
-<li>在 <code>jdb</code> 控制太输出 <code>cont</code> 指令 执行到入口的断点处</li>
+<li>使用 <code>classloader</code> 指令 加载要 <code>trace</code> 的，需要 load 哪些类型，可以从 火焰图 或 上次 trace 的结果中找</li>
 <li>在 Arthas 控制台 <code>trace</code> 慢流程的方法</li>
 <li>重复以上过程，细化 <code>trace</code> 的类和方法</li>
 </ul>
@@ -248,11 +243,11 @@ Affect<span style="color:#f92672">(</span>class-cnt:1 , method-cnt:81<span style
                         ...
 
 
+<span style="color:#75715e"># 循坏该步骤（每次重启项目），每次往细节定位</span>
+
 <span style="color:#f92672">[</span>arthas@1420<span style="color:#f92672">]</span> classloader -c 18b4aac2 --load  org.springframework.context.support.AbstractApplicationContext *
 
 <span style="color:#f92672">[</span>arthas@1420<span style="color:#f92672">]</span> trace org.springframework.context.support.AbstractApplicationContext * <span style="color:#e6db74">&#39;#cost &gt; 10000&#39;</span>
-
-<span style="color:#75715e"># 循坏该步骤（每次重启项目），每次往细节定位</span>
 </code></pre></div><h2 id="其他方法">其他方法</h2>
 <ul>
 <li>以上方法属于通用方法，使用与各种场景，但是</li>
@@ -272,7 +267,7 @@ Affect<span style="color:#f92672">(</span>class-cnt:1 , method-cnt:81<span style
   
   <div>
     
-    <a href="https://github.com/hello-world-example/Troubleshooting/commit/dee05e68d19422843ad6ef18c87e99fc25e3fa3f" title='Last modified May 24, 2020 by kaibin.yang' target="_blank" rel="noopener">
+    <a href="https://github.com/hello-world-example/Troubleshooting/commit/7b4ba3b541ecf2acbab3218b08c03756aa0e16c9" title='Last modified May 24, 2020 by kaibin.yang' target="_blank" rel="noopener">
       <img src="/Troubleshooting/svg/calendar.svg" alt="Changed" /> May 24, 2020
     </a>
   </div>

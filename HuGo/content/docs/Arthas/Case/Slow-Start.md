@@ -140,11 +140,9 @@ OK
 
 trace 分析启动过程的方式要稍微复杂些，因为应用启动 Block 时，`main` 方法还没被加载，所以没办法 `trace`，需要先执行到 `main` 方法，大致流程如下：
 
-- 带 `-agentlib:jdwp` 启动应用，这是应用被 Block，等到 `jdb` 链接
+- 带 `-agentlib:jdwp` 启动应用，这时应用被 Block，等到 `jdb` 链接
 - 使用 Arthas attach 到应用，这时候 `sc *ArthasApp` 是搜不到的
-- 使用 `classloader` 指令 加载要 `trace` 的类，需要 load 哪些类型，可能从 火焰图 或 上次 trace 的结果中找
-  - 如： `stop at xyz.kail.demo.troubleshooting.arthas.ArthasApp:13`
-- 在 `jdb` 控制太输出 `cont` 指令 执行到入口的断点处
+- 使用 `classloader` 指令 加载要 `trace` 的，需要 load 哪些类型，可以从 火焰图 或 上次 trace 的结果中找
 - 在 Arthas 控制台 `trace` 慢流程的方法
 - 重复以上过程，细化 `trace` 的类和方法
 
@@ -181,11 +179,11 @@ Affect(class-cnt:1 , method-cnt:81) cost in 314 ms.
                         ...
 
 
+# 循坏该步骤（每次重启项目），每次往细节定位
+
 [arthas@1420] classloader -c 18b4aac2 --load  org.springframework.context.support.AbstractApplicationContext *
 
 [arthas@1420] trace org.springframework.context.support.AbstractApplicationContext * '#cost > 10000'
-
-# 循坏该步骤（每次重启项目），每次往细节定位
 ```
 
 ## 其他方法
