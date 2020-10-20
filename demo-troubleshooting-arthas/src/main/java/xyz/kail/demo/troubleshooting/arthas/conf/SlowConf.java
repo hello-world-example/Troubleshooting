@@ -1,6 +1,5 @@
 package xyz.kail.demo.troubleshooting.arthas.conf;
 
-import com.ttpai.utils.tool.IpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 
